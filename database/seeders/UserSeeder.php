@@ -1,0 +1,46 @@
+<?php
+
+namespace Database\Seeders;
+
+use Carbon\Carbon;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        DB::table('users')->insert([
+            // admin & manager data
+
+            [
+            'name' => 'Admin',
+            'username' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('111'),
+            'role' => 'admin',
+            'status' => '1',
+            'created_at' => Carbon::now(),
+            ],
+            
+            [
+                'name' => 'Manager',
+                'username' => 'manager',
+                'email' => 'manager@gmail.com',
+                'password' => Hash::make('111'),
+                'role' => 'manager',
+                'status' => '1',
+                'created_at' => Carbon::now(),
+                ],
+
+
+
+        ]);
+    }
+}
