@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 
@@ -36,8 +36,8 @@ require __DIR__.'/auth.php';
 // ======================== Admin Dashboard Route ========================
 Route::middleware(['auth', 'roles:admin'])->group(function () {
 
-Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
-
+    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 });
 
 // ======================== Manager Dashboard Route ========================
@@ -45,7 +45,6 @@ Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name
 Route::middleware(['auth', 'roles:manager'])->group(function () {
 
 
-Route::get('/manager/dashboard', [ManagerController::class, 'ManagerDashboard'])->name('manager.dashboard');
-
-
+    Route::get('/manager/dashboard', [ManagerController::class, 'ManagerDashboard'])->name('manager.dashboard');
+    Route::get('/manager/logout', [ManagerController::class, 'ManagerLogout'])->name('manager.logout');
 });
