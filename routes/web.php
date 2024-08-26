@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
+use Illuminate\Auth\Middleware\Role;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -48,3 +50,10 @@ Route::middleware(['auth', 'roles:manager'])->group(function () {
     Route::get('/manager/dashboard', [ManagerController::class, 'ManagerDashboard'])->name('manager.dashboard');
     Route::get('/manager/logout', [ManagerController::class, 'ManagerLogout'])->name('manager.logout');
 });
+
+
+
+//======================== Access All ========================
+
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
+Route::get('/manager/login', [ManagerController::class, 'ManagerLogin'])->name('manager.login')->middleware(RedirectIfAuthenticated::class);

@@ -21,6 +21,12 @@ class ManagerController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/manager/login');
     } // ======== End Method =======
+
+    public function ManagerLogin(){
+
+        return view('manager.manager_login');
+
+    } // =====End Method=======
 }
