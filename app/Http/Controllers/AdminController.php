@@ -24,7 +24,12 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        $notification = array(
+            'message' => 'Manger Info Update Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect('/admin/login')->with($notification);
     } // ======== End Method =======
 
 
@@ -66,8 +71,12 @@ class AdminController extends Controller
             $data['image'] = $filename;
         }
         $data->save();
+        $notification = array(
+            'message' => 'Manger Info Update Successfully',
+            'alert-type' => 'success'
+        );
 
-        return redirect()->back();
+        return redirect()->back()->with($notification);
     } // =====End Method=======
 
 
@@ -108,7 +117,5 @@ class AdminController extends Controller
             'alert-type' => 'success'
         );
         return back()->with($notification);
-
-    
     } // =====End Method=======
 }
