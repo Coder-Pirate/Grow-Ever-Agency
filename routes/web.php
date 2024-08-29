@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\HomeController;
+use App\Http\Controllers\Backend\ServiceController;
+use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 //  ================== User Dashboard Route ==================
 
-Route::get('/', [UserController::class, 'Index'])->name('index');
+
 
 Route::get('/dashboard', function () {
     return view('user.user_dashboard');
@@ -55,8 +57,20 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/admin/edit/homeinfo{id}', 'HomeInfoedit')->name('edit.info');
         Route::post('/admin/update/homeinfo', 'HomeUpdateinfo')->name('update.info');
         Route::post('/admin/update/image', 'HomeUpdateimage')->name('update.image');
+    });
+    Route::controller(ServiceController::class)->group(function () {
+        Route::get('/admin/services', 'ServicesAll')->name('admin.services');
+        Route::get('/admin/add/services', 'ServicesAdd')->name('admin.add.service');
+        Route::post('/admin/add/services', 'AdminServicesAdd')->name('admin.service.add');
+        Route::get('/admin/edit/services{id}', 'AdminServicesEdit')->name('edit.services');
+        Route::post('/admin/update/services', 'AdminServicesUpdate')->name('admin.service.update');
+        Route::get('/admin/delete/services{id}', 'AdminServicesDelete')->name('delete.setvices');
+
 
     });
+
+    //=================================Services Rote group ===============
+
 });
 
 // ======================== Manager Dashboard Route ========================
@@ -82,3 +96,17 @@ Route::middleware(['auth', 'roles:manager'])->group(function () {
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/manager/login', [ManagerController::class, 'ManagerLogin'])->name('manager.login')->middleware(RedirectIfAuthenticated::class);
+
+
+
+
+//======================== Access All Frontend ========================
+
+
+
+
+Route::controller(IndexController::class)->group(function () {
+
+    Route::get('/', 'Index')->name('index');
+    Route::get('/services', 'Services')->name('home.servce');
+});

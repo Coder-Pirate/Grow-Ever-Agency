@@ -1,9 +1,7 @@
 @extends('frontend.master')
 @section('master')
 
-@php
-     $hero = App\Models\Home::find(1);
-@endphp
+
 
 @if ($hero->image != "")
 
@@ -219,9 +217,7 @@
 
 
 
-  @php
-     $abouthome = App\Models\Home::find(2);
-@endphp
+
 
 @if ($abouthome->image != "")
 

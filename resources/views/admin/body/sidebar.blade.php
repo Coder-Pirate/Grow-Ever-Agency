@@ -38,6 +38,18 @@
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
+                <div class="menu-title">Services</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.services') }}"><i class='bx bx-radio-circle'></i>Services</a>
+                </li>
+
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
                 <div class="menu-title">Application</div>
             </a>
             <ul>
