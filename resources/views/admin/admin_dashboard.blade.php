@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
 
     <link rel="icon" href="{{ asset('backend/assets/images/favicon-32x32.png') }}" type="image/png" />
     <!--plugins-->
@@ -30,7 +30,8 @@
 <!-- Toster CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 <!-- Flora Editor CSS -->
-    <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
+    {{-- <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' /> --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.2.6/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
 
     <title>Grow Ever - Digital Agency</title>
 </head>
@@ -133,11 +134,76 @@
 
 
 
-<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
-<script>
+
+
+{{-- <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script> --}}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.2.6/js/froala_editor.pkgd.min.js"></script>
+{{-- <script>
     // init Froala Editor
     new FroalaEditor('#editor');
-</script>
+</script> --}}
+
+{{-- <script>
+    new FroalaEditor('#editor', {
+      imageUploadURL: '/upload_image',
+      imageUploadParams: {
+        _token: '{{ csrf_token() }}'
+      }
+    });
+  </script>
+<script>
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+  </script> --}}
+
+
+  {{-- <script>
+    new FroalaEditor('#editor', {
+      imageUploadURL: '/upload_image',
+      imageUploadParams: {
+        _token: '{{ csrf_token() }}'
+      }
+    });
+  </script> --}}
+
+  <script>
+    new FroalaEditor('#editor', {
+      imageUploadURL: '{{ route('images.upload') }}',
+      imageUploadParams: {
+        _token: '{{ csrf_token() }}'
+      },
+      imageManagerLoadURL: '{{ route('images.load') }}',
+      imageManagerDeleteURL: '{{ route('images.delete') }}',
+      imageManagerDeleteMethod: 'POST',
+      imageManagerDeleteParams: {
+        _token: '{{ csrf_token() }}'
+      },
+      events: {
+        'image.removed': function ($img) {
+          var src = $img.attr('src');
+          $.ajax({
+            method: 'POST',
+            url: '{{ route('images.delete') }}',
+            data: {
+              src: src,
+              _token: '{{ csrf_token() }}'
+            },
+            success: function (response) {
+              console.log('Image deleted');
+            },
+            error: function (xhr, status, error) {
+              console.error('Error deleting image:', error);
+            }
+          });
+        }
+      }
+    });
+  </script>
+
+
 
 <!-- Add Sweetalert-->
 

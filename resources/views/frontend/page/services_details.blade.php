@@ -1,16 +1,17 @@
 @extends('frontend.master')
 @section('master')
 
-
 <section class="page-header bg-tertiary">
 	<div class="container">
 		<div class="row">
 			<div class="col-8 mx-auto text-center">
-				<h2 class="mb-3 text-capitalize">Our Services</h2>
+				<h2 class="mb-3 text-capitalize">{{ $id->title }}</h2>
 				<ul class="list-inline breadcrumbs text-capitalize" style="font-weight:500">
 					<li class="list-inline-item"><a href="{{ route('index') }}">Home</a>
 					</li>
-					<li class="list-inline-item">/ &nbsp; <a href="services.html">Services</a>
+					<li class="list-inline-item">/ &nbsp; <a href="{{ route('home.servce') }}">Services</a>
+					</li>
+					<li class="list-inline-item">/ &nbsp; <a href="">{{ $id->title }}</a>
 					</li>
 				</ul>
 			</div>
@@ -37,67 +38,18 @@
 	</div>
 </section>
 
-<section class="section">
+<section class="section-sm">
 	<div class="container">
-		<div class="row justify-content-center">
+		<div class="row g-5">
 
-@if ($service->isNotEmpty())
-
-
-@foreach ($service as $service )
-
-			<div class="icon-box-item text-center col-lg-4 col-md-6 mb-4">
-				<div class="rounded shadow py-5 px-4">
-					<div class="icon"> <i class="{{ $service->icon_class }}"></i>
-					</div>
-					<h3 class="mb-3">{{ $service->title }}</h3>
-					<p class="mb-4">{{ $service->short_desc }}</p>
-                    <a class="btn btn-sm btn-outline-primary" href="{{ route('service.details', $service->id) }}">View Details <i class="las la-arrow-right ms-1"></i></a>
+			<div class="col-lg-12">
+				<div class="content">
+				{!! $id->description !!} 
 				</div>
 			</div>
-
-            @endforeach
-            @endif
-
-
-
-
-			{{-- <div class="icon-box-item text-center col-lg-4 col-md-6 mb-4">
-				<div class="rounded shadow py-5 px-4">
-					<div class="icon"> <i class="fas fa-house-user"></i>
-					</div>
-					<h3 class="mb-3">Home Equity Loans</h3>
-					<p class="mb-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p> <a class="btn btn-sm btn-outline-primary" href="service-details.html">View Details <i class="las la-arrow-right ms-1"></i></a>
-				</div>
-			</div>
-			<div class="icon-box-item text-center col-lg-4 col-md-6 mb-4">
-				<div class="rounded shadow py-5 px-4">
-					<div class="icon"> <i class="fas fa-user-graduate"></i>
-					</div>
-					<h3 class="mb-3">Student Loans</h3>
-					<p class="mb-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p> <a class="btn btn-sm btn-outline-primary" href="service-details.html">View Details <i class="las la-arrow-right ms-1"></i></a>
-				</div>
-			</div>
-			<div class="icon-box-item text-center col-lg-4 col-md-6 mb-4">
-				<div class="rounded shadow py-5 px-4">
-					<div class="icon"> <i class="fas fa-house-damage"></i>
-					</div>
-					<h3 class="mb-3">Mortgage Loans</h3>
-					<p class="mb-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p> <a class="btn btn-sm btn-outline-primary" href="service-details.html">View Details <i class="las la-arrow-right ms-1"></i></a>
-				</div>
-			</div>
-			<div class="icon-box-item text-center col-lg-4 col-md-6 mb-4">
-				<div class="rounded shadow py-5 px-4">
-					<div class="icon"> <i class="fas fa-money-check-alt"></i>
-					</div>
-					<h3 class="mb-3">Payday Loans</h3>
-					<p class="mb-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p> <a class="btn btn-sm btn-outline-primary" href="service-details.html">View Details <i class="las la-arrow-right ms-1"></i></a>
-				</div>
-			</div> --}}
 		</div>
 	</div>
+
 </section>
 
-
 @endsection
-

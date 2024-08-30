@@ -1,15 +1,19 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\EditorController as BackendEditorController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Backend\EditorController;
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Auth\Middleware\Role;
 use Illuminate\Support\Facades\Route;
+use Psy\Command\EditCommand;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -54,7 +58,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
     Route::controller(HomeController::class)->group(function () {
         Route::get('/admin/homeinfo', 'HomeInfoAll')->name('admin.home.info');
-        Route::get('/admin/edit/homeinfo{id}', 'HomeInfoedit')->name('edit.info');
+        Route::get('/admin/edit/homeinfo/{id}', 'HomeInfoedit')->name('edit.info');
         Route::post('/admin/update/homeinfo', 'HomeUpdateinfo')->name('update.info');
         Route::post('/admin/update/image', 'HomeUpdateimage')->name('update.image');
     });
@@ -62,9 +66,10 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/admin/services', 'ServicesAll')->name('admin.services');
         Route::get('/admin/add/services', 'ServicesAdd')->name('admin.add.service');
         Route::post('/admin/add/services', 'AdminServicesAdd')->name('admin.service.add');
-        Route::get('/admin/edit/services{id}', 'AdminServicesEdit')->name('edit.services');
+        Route::get('/admin/edit/services/{id}', 'AdminServicesEdit')->name('edit.services');
         Route::post('/admin/update/services', 'AdminServicesUpdate')->name('admin.service.update');
-        Route::get('/admin/delete/services{id}', 'AdminServicesDelete')->name('delete.setvices');
+        Route::get('/admin/delete/services/{id}', 'AdminServicesDelete')->name('delete.setvices');
+
 
 
     });
@@ -109,4 +114,10 @@ Route::controller(IndexController::class)->group(function () {
 
     Route::get('/', 'Index')->name('index');
     Route::get('/services', 'Services')->name('home.servce');
+    Route::get('/services/details/{id}', 'ServicesDetails')->name('service.details');
 });
+
+//======================== Editor Image  All Frontend ========================
+Route::post('/upload_image', [ImageUploadController::class, 'upload'])->name('images.upload');
+Route::get('/images', [ImageUploadController::class, 'loadImages'])->name('images.load');
+Route::post('/delete_image', [ImageUploadController::class, 'delete'])->name('images.delete');

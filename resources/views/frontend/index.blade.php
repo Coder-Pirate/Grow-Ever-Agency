@@ -150,16 +150,29 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipreiscing elit. Lacus penatibus tincidunt</p>
           </div>
         </div>
+@if ($service->isNotEmpty())
+@php
+    $key=1;
+@endphp
+
+@foreach ($service as $service)
+
+
+
         <div class="col-lg-4 col-md-6 service-item">
-          <a class="text-black" href="service-details.html">
-            <div class="block"> <span class="colored-box text-center h3 mb-4">01</span>
-              <h3 class="mb-3 service-title">Personal loans</h3>
-              <p class="mb-0 service-description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                eirmod</p>
+          <a class="text-black" href="{{ route('service.details',$service->id) }}">
+            <div class="block"> <span class="colored-box text-center h3 mb-4">{{ $key }}</span>
+              <h3 class="mb-3 service-title">{{ $service->title }}</h3>
+              <p class="mb-0 service-description">{{ $service->short_desc }}</p>
             </div>
           </a>
         </div>
-        <div class="col-lg-4 col-md-6 service-item">
+@php
+    $key++;
+@endphp
+        @endforeach
+        @endif
+        {{-- <div class="col-lg-4 col-md-6 service-item">
           <a class="text-black" href="service-details.html">
             <div class="block"> <span class="colored-box text-center h3 mb-4">02</span>
               <h3 class="mb-3 service-title">Home Equity Loans</h3>
@@ -209,7 +222,7 @@
                 eirmod</p>
             </div>
           </a>
-        </div>
+        </div> --}}
       </div>
     </div>
   </section>
