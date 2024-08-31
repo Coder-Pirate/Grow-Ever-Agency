@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Blogcatetory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -60,4 +61,24 @@ class CategoryController extends Controller
         );
         return redirect()->route('admin.blog.category')->with($notification);
     }// End Mehod
+
+    public function BlogCategoryDelete($id){
+
+
+
+        Blogcatetory::find($id)->delete();
+
+        $blogData = Blog::where('category_id',$id)->get();
+        foreach ($blogData as $item) {
+            $item->title;
+            unlink($item->image);
+            blog::where('category_id',$id)->delete();
+        }
+
+        $notification = array(
+            'message' => 'Course Updated Successfully',
+            'alert-type' => 'success'
+        );
+         return redirect()->back()->with($notification);
+    }
 }

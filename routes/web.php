@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\EditorController as BackendEditorController;
 use App\Http\Controllers\Backend\HomeController;
@@ -85,6 +86,20 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::post('/admin/blog/category/store', 'BlogCategoryStore')->name('blog.category.store');
     Route::get('/admin/blog/category/edit/{id}', 'BlogCategoryEdit')->name('blog.category.edit');
     Route::post('/admin/blog/category/update', 'BlogCategoryUpdate')->name('blog.category.update');
+    Route::get('/admin/blog/category/delete/{id}', 'BlogCategoryDelete')->name('blog.category.delete');
+
+});
+
+ //=================================Blog Rote group ===============
+
+ Route::controller(BlogController::class)->group(function () {
+    Route::get('/admin/blog/all', 'BlogAll')->name('admin.blog.all');
+    Route::get('/admin/blog/add', 'BlogAdd')->name('admin.blog.add');
+    Route::post('/admin/blog/store', 'BlogStore')->name('store.blog');
+    Route::get('/admin/blog/edit/{id}', 'BlogEdit')->name('blog.edit');
+    Route::post('/admin/blog/update', 'BlogUpdate')->name('blog.update');
+    Route::get('/admin/blog/delete/{id}', 'BlogDelete')->name('blog.delete');
+
 
 });
 

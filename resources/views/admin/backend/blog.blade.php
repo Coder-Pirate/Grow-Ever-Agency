@@ -11,13 +11,13 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">All Blog Category</li>
+                    <li class="breadcrumb-item active" aria-current="page">All Blog</li>
                 </ol>
             </nav>
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-           <a href="{{ route('blog.category.add') }}" class="btn btn-primary px-5">Add Blog Category </a>
+           <a href="{{ route('admin.blog.add') }}" class="btn btn-primary px-5">Add Blog </a>
             </div>
         </div>
     </div>
@@ -30,18 +30,22 @@
                     <thead>
                         <tr>
                             <th>Sl</th>
-                            <th> Blog Category Name </th>
+                            <th> Blog Name </th>
+                            <th>Category Name</th>
+                            <th>Author Name</th>
                             <th>Staus</th>
 
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($blogcat as $key=> $item)
+                        @foreach ($blog as $key=> $item)
                         <tr>
 
                             <td>{{ $key+1 }}</td>
-                            <td> {{ $item->category_name }}</td>
+                            <td> {{ $item->title }}</td>
+                            <td> {{ $item['category']['category_name'] }}</td>
+                            <td> {{ $item['author']['name'] }}</td>
 
                             <td>
                                 @if ($item->status>= 1)
@@ -51,8 +55,8 @@
                                 @endif
                                    </td>
                             <td>
-       <a href="{{ route('blog.category.edit',$item->id) }}" class="btn btn-info px-5">Edit </a>
-       <a href="{{ route('blog.category.delete',$item->id) }}" class="btn btn-danger px-5" id="delete">Delete </a>
+       <a href="{{ route('blog.edit',$item->id) }}" class="btn btn-info px-5">Edit </a>
+       <a href="{{ route('blog.delete',$item->id) }}" class="btn btn-danger px-5" id="delete">Delete </a>
                             </td>
                         </tr>
                         @endforeach

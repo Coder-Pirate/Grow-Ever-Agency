@@ -108,6 +108,8 @@
     </script>
     <!--Tostet JS-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!--Validition JS-->
+    <script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
 
     <script>
         @if (Session::has('message'))
@@ -136,38 +138,8 @@
 
 
 
-{{-- <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script> --}}
+<!--Floara Editor-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.2.6/js/froala_editor.pkgd.min.js"></script>
-{{-- <script>
-    // init Froala Editor
-    new FroalaEditor('#editor');
-</script> --}}
-
-{{-- <script>
-    new FroalaEditor('#editor', {
-      imageUploadURL: '/upload_image',
-      imageUploadParams: {
-        _token: '{{ csrf_token() }}'
-      }
-    });
-  </script>
-<script>
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-  </script> --}}
-
-
-  {{-- <script>
-    new FroalaEditor('#editor', {
-      imageUploadURL: '/upload_image',
-      imageUploadParams: {
-        _token: '{{ csrf_token() }}'
-      }
-    });
-  </script> --}}
 
   <script>
     new FroalaEditor('#editor', {
