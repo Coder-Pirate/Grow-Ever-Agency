@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\EditorController as BackendEditorController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\ServiceController;
@@ -62,6 +63,8 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('/admin/update/homeinfo', 'HomeUpdateinfo')->name('update.info');
         Route::post('/admin/update/image', 'HomeUpdateimage')->name('update.image');
     });
+
+ //=================================Services Rote group ===============
     Route::controller(ServiceController::class)->group(function () {
         Route::get('/admin/services', 'ServicesAll')->name('admin.services');
         Route::get('/admin/add/services', 'ServicesAdd')->name('admin.add.service');
@@ -74,7 +77,16 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
     });
 
-    //=================================Services Rote group ===============
+ //=================================Category Rote group ===============
+
+ Route::controller(CategoryController::class)->group(function () {
+    Route::get('/admin/blog/category', 'BlogCategoryAll')->name('admin.blog.category');
+    Route::get('/admin/blog/category/add', 'BlogCategoryAdd')->name('blog.category.add');
+    Route::post('/admin/blog/category/store', 'BlogCategoryStore')->name('blog.category.store');
+    Route::get('/admin/blog/category/edit/{id}', 'BlogCategoryEdit')->name('blog.category.edit');
+    Route::post('/admin/blog/category/update', 'BlogCategoryUpdate')->name('blog.category.update');
+
+});
 
 });
 
