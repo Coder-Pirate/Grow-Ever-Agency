@@ -52,9 +52,10 @@
 					</div>
 					<h3 class="mb-3">{{ $service->title }}</h3>
 					<p class="mb-4">{{ $service->short_desc }}</p>
-                    <a class="btn btn-sm btn-outline-primary" href="{{ route('service.details', $service->id) }}">View Details <i class="las la-arrow-right ms-1"></i></a>
+                    <a class="btn btn-sm btn-outline-primary" href="{{ url('/services/details/'.$service->id.'/'.$service->title_slug) }}">View Details <i class="las la-arrow-right ms-1"></i></a>
 				</div>
 			</div>
+
 
             @endforeach
             @endif

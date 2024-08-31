@@ -27,6 +27,7 @@ class ServiceController extends Controller
     public function AdminServicesAdd(Request $request){
         Service::insert([
             'title' => $request->title,
+            'title_slug' => strtolower(str_replace(' ','-',$request->title)),
             'icon_class' => $request->icon_class,
             'short_desc' => $request->short_desc,
             'description' => $request->description,
@@ -34,7 +35,7 @@ class ServiceController extends Controller
             'created_at' => Carbon::now(),
         ]);
         $notification = array(
-            'message' => 'Instructor Registed Successfully',
+            'message' => 'Categoty Registed Successfully',
             'alert-type' => 'success'
         );
         return redirect()->route('admin.services')->with($notification);
@@ -53,6 +54,7 @@ class ServiceController extends Controller
 
            Service::find($sid)->update([
             'title' => $request->title,
+            'title_slug' => strtolower(str_replace(' ','-',$request->title)),
             'icon_class' => $request->icon_class,
             'short_desc' => $request->short_desc,
             'description' => $request->description,
@@ -62,7 +64,7 @@ class ServiceController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Course Updated Successfully',
+            'message' => 'Categoty Updated Successfully',
             'alert-type' => 'success'
         );
         return redirect()->route('admin.services')->with($notification);
@@ -75,7 +77,7 @@ class ServiceController extends Controller
         Service::find($id)->delete();
 
         $notification = array(
-            'message' => 'Course Updated Successfully',
+            'message' => 'Categoty Updated Successfully',
             'alert-type' => 'success'
         );
          return redirect()->back()->with($notification);

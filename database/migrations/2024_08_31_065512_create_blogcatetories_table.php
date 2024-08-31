@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('blogcatetories', function (Blueprint $table) {
             $table->id();
             $table->string('category_name');
+            $table->string('category_slug');
             $table->integer('status')->default(1);
             $table->timestamps();
         });

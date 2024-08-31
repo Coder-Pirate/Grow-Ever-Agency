@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
+use App\Models\Blogcatetory;
 use App\Models\Home;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -26,12 +28,22 @@ class IndexController extends Controller
     }// =======End Method======
 
 
-    public function ServicesDetails($id){
+    public function ServicesDetails($id, $slug){
 
-        $id = Service::findOrFail($id);
+        $serviceData = Service::find($id);
 
-        return view('frontend.page.services_details', compact('id'));
+        return view('frontend.page.services_details', compact('serviceData'));
 
 
     }// =======End Method======
+
+    public function Blogs(){
+        $blogCategory = Blogcatetory::where('status', 1)->latest()->get();
+        $blog = Blog::where('status', 1)->latest()->get();
+
+        return view('frontend.page.blog',compact('blog','blogCategory'));
+
+    }// =======End Method======
+
+
 }

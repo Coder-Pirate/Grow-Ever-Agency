@@ -5,13 +5,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-8 mx-auto text-center">
-				<h2 class="mb-3 text-capitalize">{{ $id->title }}</h2>
+				<h2 class="mb-3 text-capitalize">{{ $serviceData->title }}</h2>
 				<ul class="list-inline breadcrumbs text-capitalize" style="font-weight:500">
 					<li class="list-inline-item"><a href="{{ route('index') }}">Home</a>
 					</li>
 					<li class="list-inline-item">/ &nbsp; <a href="{{ route('home.servce') }}">Services</a>
 					</li>
-					<li class="list-inline-item">/ &nbsp; <a href="">{{ $id->title }}</a>
+					<li class="list-inline-item">/ &nbsp; <a href="">{{ $serviceData->title }}</a>
 					</li>
 				</ul>
 			</div>
@@ -44,7 +44,7 @@
 
 			<div class="col-lg-12">
 				<div class="content">
-				{!! $id->description !!} 
+				{!! $serviceData->description !!}
 				</div>
 			</div>
 		</div>

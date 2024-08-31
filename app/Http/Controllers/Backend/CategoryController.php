@@ -26,6 +26,7 @@ class CategoryController extends Controller
     {
         Blogcatetory::insert([
             'category_name' => $request->category_name,
+            'category_slug' => strtolower(str_replace(' ','-',$request->category_name)),
             'status' => '1',
             'created_at' => Carbon::now(),
 
@@ -50,6 +51,7 @@ class CategoryController extends Controller
 
         Blogcatetory::find($bid)->update([
             'category_name' => $request->category_name,
+            'category_slug' => strtolower(str_replace(' ','-',$request->category_name)),
             'status' =>  $request->status,
 
 

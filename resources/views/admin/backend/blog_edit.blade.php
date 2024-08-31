@@ -112,18 +112,14 @@
                 category_name: {
                     required : true,
                 },
-                image: {
-                    required : true,
-                },
+
 
             },
             messages :{
                 category_name: {
                     required : 'Please Enter SubCategory Name',
-                },
-                image: {
-                    required : 'Please Select Category Name',
-                },
+                }
+
 
             },
             errorElement : 'span',

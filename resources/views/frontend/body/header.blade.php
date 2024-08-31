@@ -17,8 +17,8 @@
 					</li>
                     <li class="nav-item "> <a class="nav-link" href="{{ route('home.servce') }}">Portfilio</a>
 					</li>
-                    
-                    <li class="nav-item "> <a class="nav-link" href="{{ route('home.servce') }}">Blog</a>
+
+                    <li class="nav-item "> <a class="nav-link" href="{{ route('home.blog') }}">Blog</a>
 					</li>
 
 					<li class="nav-item "> <a class="nav-link" href="contact.html">Contact</a>

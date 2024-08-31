@@ -3,7 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\Backend\EditorController as BackendEditorController;
+
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Frontend\IndexController;
@@ -15,7 +15,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Auth\Middleware\Role;
 use Illuminate\Support\Facades\Route;
-use Psy\Command\EditCommand;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -141,8 +141,14 @@ Route::controller(IndexController::class)->group(function () {
 
     Route::get('/', 'Index')->name('index');
     Route::get('/services', 'Services')->name('home.servce');
-    Route::get('/services/details/{id}', 'ServicesDetails')->name('service.details');
+    Route::get('/services/details/{id}/{slug}', 'ServicesDetails')->name('service.details');
+    Route::get('/blogs', 'Blogs')->name('home.blog');
+
 });
+
+
+
+
 
 //======================== Editor Image  All Frontend ========================
 Route::post('/upload_image', [ImageUploadController::class, 'upload'])->name('images.upload');

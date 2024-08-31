@@ -25,7 +25,7 @@ class BlogController extends Controller
 
     public function BlogAdd()
     {
-        $category = Blogcatetory::latest()->get();
+        $category = Blogcatetory::latest()->get()->where('status', 1);
         $blogData = Blog::all();
         return view('admin.backend.blog_add', compact('category', 'blogData'));
     } //End Method
@@ -43,6 +43,7 @@ class BlogController extends Controller
 
         Blog::insertGetId([
             'title' =>  $request->title,
+            'title_slug' => strtolower(str_replace(' ','-',$request->title)),
             'image' =>  $save_url,
             'category_id' =>  $request->category_id,
             'user_id' =>  Auth::user()->id,
@@ -63,7 +64,7 @@ class BlogController extends Controller
     public function BlogEdit($id)
     {
         $blogData = Blog::find($id);
-        $category = Blogcatetory::latest()->get();
+        $category = Blogcatetory::latest()->get()->where('status', 1);
         return view('admin.backend.blog_edit', compact('blogData', 'category'));
     }
 
@@ -72,6 +73,9 @@ class BlogController extends Controller
 
         $id = $request->id;
         $oldImage = $request->old_img;
+
+        if($request->file('image')){
+
 
         $image = $request->file('image');
         $manager = new ImageManager(new Driver()); //ImageManager
@@ -89,6 +93,7 @@ class BlogController extends Controller
 
         Blog::find($id)->update([
             'title' =>  $request->title,
+            'title_slug' => strtolower(str_replace(' ','-',$request->title)),
             'image' =>  $save_url,
             'category_id' =>  $request->category_id,
             'user_id' =>  Auth::user()->id,
@@ -97,6 +102,18 @@ class BlogController extends Controller
             'created_at' => Carbon::now(),
 
         ]);
+    }else{
+        Blog::find($id)->update([
+            'title' =>  $request->title,
+            'title_slug' => strtolower(str_replace(' ','-',$request->title)),
+            'category_id' =>  $request->category_id,
+            'user_id' =>  Auth::user()->id,
+            'contant' =>  $request->contant,
+            'status' =>  $request->status,
+            'created_at' => Carbon::now(),
+
+        ]);
+    }
 
 
         $notification = array(
