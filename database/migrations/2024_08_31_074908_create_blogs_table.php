@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('category_id');
             $table->integer('user_id');
             $table->string('image');
-            $table->longText('contant');
+            $table->longText('contant')->nullable();
             $table->integer('status');
             $table->timestamps();
         });

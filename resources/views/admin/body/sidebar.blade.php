@@ -103,7 +103,19 @@
 
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Pages</div>
+            </a>
+            <ul>
+                <li> <a href=""><i class='bx bx-radio-circle'></i>All Page</a>
+                </li>
 
+
+            </ul>
+        </li>
 
 
 

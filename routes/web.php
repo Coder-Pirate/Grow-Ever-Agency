@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CategoryController;
 
 use App\Http\Controllers\Backend\HomeController;
+use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Frontend\IndexController;
 
@@ -132,6 +133,18 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
 
     });
+
+
+    //=================================Team Rote group ===============
+
+    Route::controller(PageController::class)->group(function () {
+        // Route::get('/admin/about', 'Page')->name('admin.page');
+
+
+
+    });
+
+
 });
 
 // ======================== Manager Dashboard Route ========================
