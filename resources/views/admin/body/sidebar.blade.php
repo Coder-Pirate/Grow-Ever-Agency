@@ -44,6 +44,21 @@
             </ul>
         </li>
 
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Team</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.team') }}"><i class='bx bx-radio-circle'></i>Team Membar</a>
+                </li>
+
+            </ul>
+        </li>
+
+
+
 
         <li>
             <a href="javascript:;" class="has-arrow">
@@ -90,7 +105,7 @@
         </li>
 
 
-       
+
 
     </ul>
     <!--end navigation-->

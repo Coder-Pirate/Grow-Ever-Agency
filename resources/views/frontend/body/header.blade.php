@@ -15,7 +15,7 @@
 
 					<li class="nav-item "> <a class="nav-link" href="{{ route('home.servce') }}">Services</a>
 					</li>
-                    <li class="nav-item "> <a class="nav-link" href="{{ route('home.servce') }}">Portfilio</a>
+                    <li class="nav-item "> <a class="nav-link" href="{{ route('home.portfolio') }}">Portfilio</a>
 					</li>
 
                     <li class="nav-item "> <a class="nav-link" href="{{ route('home.blog') }}">Blog</a>

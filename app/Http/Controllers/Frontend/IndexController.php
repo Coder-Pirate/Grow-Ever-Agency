@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Blogcatetory;
 use App\Models\Home;
+use App\Models\Portfolio;
+use App\Models\Portfoliocategory;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +24,9 @@ class IndexController extends Controller
 
     }// =======End Method======
 
+
+//-----------------------------------------------------------------Services----------------
+
     public function Services(){
         $service = Service::where('status', 1)->orderBy('title', 'ASC')->get();
 
@@ -37,6 +42,10 @@ class IndexController extends Controller
 
 
     }// =======End Method======
+
+
+//-----------------------------------------------------------------Blog----------------
+
 
     public function Blogs(){
         $blogCategory = Blogcatetory::where('status', 1)->latest()->get();
@@ -68,4 +77,37 @@ class IndexController extends Controller
 
     }// =======End Method======
 
+    //-----------------------------------------------------------------Blog----------------
+
+    public function Portfolio(){
+        $portfolioCategory = Portfoliocategory::where('status', 1)->latest()->get();
+        $portfolio = Portfolio::where('status', 1)->latest()->paginate(16);
+        $latestportfolio = Portfolio::where('status', 1)->latest()->limit(3)->get();
+
+        return view('frontend.page.portfolio',compact('portfolioCategory','portfolio','latestportfolio'));
+
+
+    }// =======End Method======
+
+
+    public function PortfolioCategory($id, $slug){
+
+        $portfolioCategory = Portfoliocategory::where('status', 1)->latest()->get();
+    $portfolio = Portfolio::where('category_id', $id)->where('status', 1)->paginate(16);
+    $latestportfolio = Portfolio::where('status', 1)->latest()->limit(3)->get();
+
+    return view('frontend.page.portfoliocategory',compact('portfolioCategory','portfolio','latestportfolio'));
+
+
+    }// =======End Method======
+
+
+    public function PortfolioDetails($id, $slug){
+        $portfolio = Portfolio::find($id);
+
+        return view('frontend.page.portfoliodetails', compact('portfolio'));
+
+
+
+    }// =======End Method======
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Frontend\IndexController;
 
 use App\Http\Controllers\Backend\PortfolioController;
+use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
@@ -117,6 +118,20 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/admin/portfolio/delete/{id}', 'PortfolioDelete')->name('portfolio.delete');
 
     });
+
+
+    //=================================Team Rote group ===============
+
+    Route::controller(TeamController::class)->group(function () {
+        Route::get('/admin/team/all', 'TeamAll')->name('admin.team');
+        Route::get('/admin/team/add', 'TeamAdd')->name('team.add');
+        Route::post('/admin/team/store', 'TeamStore')->name('store.team');
+        Route::get('/admin/team/edit/{id}', 'TeamEdit')->name('team.edit');
+        Route::post('/admin/team/update', 'TeamUpdate')->name('team.update');
+        Route::get('/admin/team/delete/{id}', 'TeamDelete')->name('team.delete');
+
+
+    });
 });
 
 // ======================== Manager Dashboard Route ========================
@@ -154,11 +169,23 @@ Route::get('/manager/login', [ManagerController::class, 'ManagerLogin'])->name('
 Route::controller(IndexController::class)->group(function () {
 
     Route::get('/', 'Index')->name('index');
+
+    //==================Service ================
+
     Route::get('/services', 'Services')->name('home.servce');
     Route::get('/services/details/{id}/{slug}', 'ServicesDetails')->name('service.details');
+
+    // ==================Blog ================
+
     Route::get('/blogs', 'Blogs')->name('home.blog');
     Route::get('/categoty/{id}/{slug}', 'BlogCategory')->name('category.blog');
     Route::get('/blog/details/{id}/{slug}', 'BlogDetails')->name('details.blog');
+
+    // =============== Portfolio===============
+
+    Route::get('/portfolios', 'Portfolio')->name('home.portfolio');
+    Route::get('/categoty/{id}/{slug}', 'PortfolioCategory')->name('category.portfilio');
+    Route::get('/portfolio/details/{id}/{slug}', 'PortfolioDetails')->name('details.portfolio');
 });
 
 
