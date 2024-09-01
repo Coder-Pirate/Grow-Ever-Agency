@@ -8,6 +8,7 @@ use App\Models\Blogcatetory;
 use App\Models\Home;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -53,6 +54,17 @@ class IndexController extends Controller
     $latestblog = Blog::where('status', 1)->latest()->limit(3)->get();
 
     return view('frontend.page.blogcategory',compact('blog','blogCategory','latestblog'));
+
+    }// =======End Method======
+
+
+
+    public function BlogDetails($id, $slug){
+
+
+        $blog = Blog::find($id);
+
+        return view('frontend.page.blogdetails', compact('blog'));
 
     }// =======End Method======
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Blogcatetory;
+use App\Models\Portfolio;
+use App\Models\Portfoliocategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -26,7 +28,7 @@ class CategoryController extends Controller
     {
         Blogcatetory::insert([
             'category_name' => $request->category_name,
-            'category_slug' => strtolower(str_replace(' ','-',$request->category_name)),
+            'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
             'status' => '1',
             'created_at' => Carbon::now(),
 
@@ -51,7 +53,7 @@ class CategoryController extends Controller
 
         Blogcatetory::find($bid)->update([
             'category_name' => $request->category_name,
-            'category_slug' => strtolower(str_replace(' ','-',$request->category_name)),
+            'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
             'status' =>  $request->status,
 
 
@@ -62,25 +64,108 @@ class CategoryController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('admin.blog.category')->with($notification);
-    }// End Mehod
+    } // End Mehod
 
-    public function BlogCategoryDelete($id){
+    public function BlogCategoryDelete($id)
+    {
 
 
 
         Blogcatetory::find($id)->delete();
 
-        $blogData = Blog::where('category_id',$id)->get();
+        $blogData = Blog::where('category_id', $id)->get();
         foreach ($blogData as $item) {
             $item->title;
             unlink($item->image);
-            blog::where('category_id',$id)->delete();
+            blog::where('category_id', $id)->delete();
         }
 
         $notification = array(
             'message' => 'Course Updated Successfully',
             'alert-type' => 'success'
         );
-         return redirect()->back()->with($notification);
+        return redirect()->back()->with($notification);
+    } // End Method
+
+
+
+    public function PortfolioCategoryAll()
+    {
+        $portfolio = Portfoliocategory::latest()->get();
+        return view('admin.backend.portfolioall_category', compact('portfolio'));
+    } //End Method
+
+    public function PortfolioCategoryAdd()
+    {
+
+
+        return view('admin.backend.portfoilocategory_add');
+    } // End  Method
+
+
+    public function PortfolioCategoryStore(Request $request){
+
+        Portfoliocategory::insert([
+            'category_name' => $request->category_name,
+            'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
+            'status' => '1',
+            'created_at' => Carbon::now(),
+
+        ]);
+        $notification = array(
+            'message' => 'Portfolio Category Add Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.portfolio.category')->with($notification);
+
+
+    }// End Method
+
+    public function PortfolioCategoryEdit($id){
+
+        $id = Portfoliocategory::find($id);
+        return view('admin.backend.portfoliocategory_edit', compact('id'));
+
+
+    }// End Method
+
+    public function PortfolioCategoryUpdate(Request $request){
+
+        $pid = $request->id;
+
+        Portfoliocategory::find($pid)->update([
+            'category_name' => $request->category_name,
+            'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
+            'status' =>  $request->status,
+
+
+        ]);
+
+        $notification = array(
+            'message' => 'Portfolio Category Update Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.portfolio.category')->with($notification);
+
+    }// End Method
+
+    public function PortfolioCategoryDelete($id){
+
+        Portfoliocategory::find($id)->delete();
+
+        $portfolioData = Portfolio::where('category_id', $id)->get();
+        foreach ($portfolioData as $item) {
+            $item->title;
+            unlink($item->image);
+            Portfolio::where('category_id', $id)->delete();
+        }
+
+        $notification = array(
+            'message' => 'Course Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
+
     }
 }
