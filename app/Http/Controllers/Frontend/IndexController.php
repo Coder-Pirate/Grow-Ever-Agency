@@ -39,11 +39,21 @@ class IndexController extends Controller
 
     public function Blogs(){
         $blogCategory = Blogcatetory::where('status', 1)->latest()->get();
-        $blog = Blog::where('status', 1)->latest()->get();
+        $blog = Blog::where('status', 1)->latest()->paginate(16);
+        $latestblog = Blog::where('status', 1)->latest()->limit(3)->get();
 
-        return view('frontend.page.blog',compact('blog','blogCategory'));
+        return view('frontend.page.blog',compact('blog','blogCategory','latestblog'));
 
     }// =======End Method======
 
+
+    public function BlogCategory($id, $slug){
+    $blogCategory = Blogcatetory::where('status', 1)->latest()->get();
+    $blog = Blog::where('category_id', $id)->where('status', 1)->paginate(16);
+    $latestblog = Blog::where('status', 1)->latest()->limit(3)->get();
+
+    return view('frontend.page.blogcategory',compact('blog','blogCategory','latestblog'));
+
+    }// =======End Method======
 
 }

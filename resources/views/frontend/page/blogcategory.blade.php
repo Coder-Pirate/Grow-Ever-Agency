@@ -77,13 +77,13 @@
                                         <article class="blog-post">
                                             <div class="post-slider slider-sm rounded">
 
-                                                @if ($item->image != '')
-                                                    <img loading="lazy" decoding="async" src=" {{ asset($item->image) }} ">
+                                                @if ($item->image != "")
+
+                                                <img loading="lazy" decoding="async" src=" {{ asset($item->image) }} ">
                                                 @endif
                                             </div>
                                             <div class="pt-4">
-                                                <p class="mb-3">
-                                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d M, Y') }}</p>
+                                                <p class="mb-3">{{\Carbon\Carbon::parse($item->created_at)->format('d M, Y')  }}</p>
                                                 <h2 class="h4"><a class="text-black"
                                                         href="blog-details.html">{{ $item->title }}</a></h2>
                                                 <a href="blog-details.html" class="text-primary fw-bold"
@@ -96,10 +96,8 @@
                             <div class="col-12">
                                 <nav class="mt-4">
                                     <!-- pagination -->
+
                                     {{$blog->links('vendor.pagination.custom')  }}
-
-
-
                                 </nav>
                             </div>
                         </div>
@@ -112,11 +110,12 @@
                         <ul class="list-unstyled widget-list">
 
                             @if ($blogCategory->isNotEmpty())
-                                @foreach ($blogCategory as $item)
-                                    <li><a href="{{ url('categoty/' . $item->id . '/' . $item->category_slug) }}">{{ $item->category_name }}
-                                            <small class="ml-auto"></small></a>
-                                    </li>
-                                @endforeach
+                            @foreach ($blogCategory as $item)
+
+
+                            <li><a href="{{ url('categoty/'.$item->id.'/'.$item->category_slug) }}">{{ $item->category_name }} <small class="ml-auto"></small></a>
+                            </li>
+                            @endforeach
                             @endif
 
 
@@ -128,8 +127,6 @@
                     <div class="widget">
                         <h5 class="widget-title"><span>Latest Article</span></h5>
                         <!-- post-item -->
-
-
                         @if ($latestblog->isNotEmpty())
                             @foreach ($latestblog as $item)
                                 <ul class="list-unstyled widget-list">

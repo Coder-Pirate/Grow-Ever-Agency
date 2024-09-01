@@ -143,6 +143,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/services', 'Services')->name('home.servce');
     Route::get('/services/details/{id}/{slug}', 'ServicesDetails')->name('service.details');
     Route::get('/blogs', 'Blogs')->name('home.blog');
+    Route::get('/categoty/{id}/{slug}', 'BlogCategory')->name('category.blog');
 
 });
 
