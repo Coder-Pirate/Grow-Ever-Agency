@@ -10,7 +10,7 @@
 				<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 					<li class="nav-item"> <a class="nav-link" href="{{ route('index') }}">Home</a>
 					</li>
-					<li class="nav-item "> <a class="nav-link" href="about.html">About</a>
+					<li class="nav-item "> <a class="nav-link" href="{{ route('home.about') }}">About</a>
 					</li>
 
 					<li class="nav-item "> <a class="nav-link" href="{{ route('home.servce') }}">Services</a>

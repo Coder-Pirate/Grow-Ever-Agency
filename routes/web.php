@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CategoryController;
 
@@ -135,10 +136,13 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     });
 
 
-    //=================================Team Rote group ===============
+    //=================================About Route group ===============
 
-    Route::controller(PageController::class)->group(function () {
-        // Route::get('/admin/about', 'Page')->name('admin.page');
+    Route::controller(AboutController::class)->group(function () {
+        Route::get('/admin/about', 'AboutInfo')->name('admin.about');
+        Route::get('/admin/about/eiit/{id}', 'AboutEdit')->name('admin.about.edit');
+        Route::post('/admin/update/about', 'AboutUpdateinfo')->name('update.about');
+        Route::post('/admin/about/image', 'AboutUpdateimage')->name('about.image');
 
 
 
@@ -199,6 +203,11 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/portfolios', 'Portfolio')->name('home.portfolio');
     Route::get('/categoty/{id}/{slug}', 'PortfolioCategory')->name('category.portfilio');
     Route::get('/portfolio/details/{id}/{slug}', 'PortfolioDetails')->name('details.portfolio');
+
+    // =============== About ===============
+
+    Route::get('/about', 'About')->name('home.about');
+
 });
 
 

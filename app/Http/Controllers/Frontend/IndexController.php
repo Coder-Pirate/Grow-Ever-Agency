@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\Blog;
 use App\Models\Blogcatetory;
 use App\Models\Home;
 use App\Models\Portfolio;
 use App\Models\Portfoliocategory;
 use App\Models\Service;
+use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -108,6 +110,16 @@ class IndexController extends Controller
         return view('frontend.page.portfoliodetails', compact('portfolio'));
 
 
+
+    }// =======End Method======
+
+ //----------------------------------About Page-----------------------------------------------
+
+    public function About(){
+        $about = About::Find(1);
+        $team = Team::where('status', 1)->latest()->get();
+
+        return view('frontend.page.about', compact('about','team'));
 
     }// =======End Method======
 }
