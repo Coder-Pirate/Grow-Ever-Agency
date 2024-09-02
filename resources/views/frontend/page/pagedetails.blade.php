@@ -1,15 +1,14 @@
 @extends('frontend.master')
 @section('master')
-
     <section class="page-header bg-tertiary">
         <div class="container">
             <div class="row">
                 <div class="col-8 mx-auto text-center">
-                    <h2 class="mb-3 text-capitalize">Portfolio</h2>
+                    <h2 class="mb-3 text-capitalize">{{ $pages->title }}</h2>
                     <ul class="list-inline breadcrumbs text-capitalize" style="font-weight:500">
                         <li class="list-inline-item"><a href="{{ route('index') }}">Home</a>
                         </li>
-                        <li class="list-inline-item">/ &nbsp; <a href="">Portfolio</a>
+                        <li class="list-inline-item">/ &nbsp; <a href="">{{ $pages->title }}</a>
                         </li>
                     </ul>
                 </div>
@@ -64,109 +63,17 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section-sm">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9">
-                    <div class="me-lg-4">
-                        <div class="row gy-5">
+                <div class="col-lg-10 mx-auto">
+                    <div class="content">
 
-                            @if ($portfolio->isNotEmpty())
-                                @foreach ($portfolio as $item)
-                                    <div class="col-md-6" data-aos="fade">
-                                        <article class="blog-post">
-                                            <div class="post-slider slider-sm rounded">
-
-                                                @if ($item->image != "")
-
-                                                <img loading="lazy" decoding="async" src=" {{ asset($item->image) }} ">
-                                                @endif
-                                            </div>
-                                            <div class="pt-4">
-                                                <p class="mb-3">{{\Carbon\Carbon::parse($item->created_at)->format('d M, Y')  }}</p>
-                                                <h2 class="h4"><a class="text-black"
-                                                        href="{{ url('portfolio/details/'.$item->id. '/'. $item->title_slug) }}">{{ $item->title }}</a></h2>
-                                                <a href="{{ url('portfolio/details/'.$item->id. '/'. $item->title_slug) }}" class="text-primary fw-bold"
-                                                    aria-label="Read the full article by clicking here">Read More</a>
-                                            </div>
-                                        </article>
-                                    </div>
-                                @endforeach
-                            @endif
-                            <div class="col-12">
-                                <nav class="mt-4">
-                                    <!-- pagination -->
-
-                                    {{$portfolio->links('vendor.pagination.custom')  }}
-                                </nav>
-                            </div>
+                            {!! $pages->description !!}
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <!-- categories -->
-                    <div class="widget widget-categories">
-                        <h5 class="widget-title"><span>Category</span></h5>
-                        <ul class="list-unstyled widget-list">
-
-                            @if ($portfolioCategory->isNotEmpty())
-                            @foreach ($portfolioCategory as $item)
-
-
-                            <li><a href="{{ url('portfolios/categoty/'.$item->id.'/'.$item->category_slug) }}">{{ $item->category_name }} <small class="ml-auto"></small></a>
-                            </li>
-                            @endforeach
-                            @endif
-
-
-                        </ul>
-                    </div>
-                    <!-- tags -->
-
-                    <!-- latest post -->
-                    <div class="widget">
-                        <h5 class="widget-title"><span>Latest Article</span></h5>
-                        <!-- post-item -->
-                        @if ($latestportfolio->isNotEmpty())
-                            @foreach ($latestportfolio as $item)
-                                <ul class="list-unstyled widget-list">
-                                    <li class="d-flex widget-post align-items-center">
-                                        <a class="text-black" href="/blog/elements/">
-                                            <div class="widget-post-image flex-shrink-0 me-3">
-                                                <img class="rounded" loading="lazy" decoding="async"
-                                                    src="{{ asset($item->image) }}" alt="Post Thumbnail">
-                                            </div>
-                                        </a>
-                                        <div class="flex-grow-1">
-                                            <h5 class="h6 mb-0"><a class="text-black" href="{{ url('portfolio/details/'.$item->id. '/'. $item->title_slug) }}">
-                                                    {{ $item->title }}</a></h5>
-                                            <small>{{ \Carbon\Carbon::parse($item->created_at)->format('d M, Y') }}</small>
-                                        </div>
-                                    </li>
-                                </ul>
-                            @endforeach
-                        @endif
-                    </div>
-                    <!-- Social -->
-                    <div class="widget">
-                        <h4 class="widget-title"><span>Social Links</span></h4>
-                        <ul class="list-unstyled list-inline mb-0 social-icons">
-                            <li class="list-inline-item me-3"><a title="Explorer Facebook Profile" class="text-black"
-                                    href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li class="list-inline-item me-3"><a title="Explorer Twitter Profile" class="text-black"
-                                    href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li class="list-inline-item me-3"><a title="Explorer Instagram Profile" class="text-black"
-                                    href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-
     </section>
-
-
 @endsection

@@ -26,24 +26,7 @@
 
 					<li class="nav-item "> <a class="nav-link" href="contact.html">Contact</a>
 					</li>
-					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item " href="blog.html">Blog</a>
-							</li>
-							<li><a class="dropdown-item " href="blog-details.html">Blog Details</a>
-							</li>
-							<li><a class="dropdown-item " href="service-details.html">Service Details</a>
-							</li>
-							<li><a class="dropdown-item " href="faq.html">FAQ&#39;s</a>
-							</li>
-							<li><a class="dropdown-item " href="legal.html">Legal</a>
-							</li>
-							<li><a class="dropdown-item " href="terms.html">Terms &amp; Condition</a>
-							</li>
-							<li><a class="dropdown-item " href="privacy-policy.html">Privacy &amp; Policy</a>
-							</li>
-						</ul>
-					</li>
+					
 				</ul>
 				{{-- <!-- account btn --> <a href="#!" class="btn btn-outline-primary">Log In</a> --}}
 				<!-- account btn --> <a href="#!" class="btn btn-primary ms-2 ms-lg-3">Contact Us</a>

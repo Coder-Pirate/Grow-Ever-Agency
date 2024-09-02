@@ -113,7 +113,7 @@
 
                             @if ($portfolioCategory->isNotEmpty())
                                 @foreach ($portfolioCategory as $item)
-                                    <li><a href="{{ url('categoty/' . $item->id . '/' . $item->category_slug) }}">{{ $item->category_name }}
+                                    <li><a href="{{ url('portfolios/categoty/' . $item->id . '/' . $item->category_slug) }}">{{ $item->category_name }}
                                             <small class="ml-auto"></small></a>
                                     </li>
                                 @endforeach

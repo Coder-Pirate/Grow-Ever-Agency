@@ -3,61 +3,88 @@
 		<div class="row justify-content-between">
 			<div class="col-lg-2 col-md-4 col-6 mb-4">
 				<div class="footer-widget">
-					<h5 class="mb-4 text-primary font-secondary">Service</h5>
+					<h5 class="mb-4 text-primary font-secondary">Service Info</h5>
 					<ul class="list-unstyled">
-						<li class="mb-2"><a href="service-details.html">Personal loans</a>
+
+                        @php
+                            $item = App\Models\Service::where('status', 1)->orderBy('title','ASC')->get();
+                        @endphp
+                         @if ($item->isNotEmpty())
+
+                         @foreach ($item as $item )
+
+						<li class="mb-2"><a href="{{ route('service.details', ['id' => $item->id, 'slug' => $item->title_slug]) }}">{{ $item->title }}</a>
 						</li>
-						<li class="mb-2"><a href="service-details.html">Home Equity Loans</a>
-						</li>
-						<li class="mb-2"><a href="service-details.html">Student Loans</a>
-						</li>
-						<li class="mb-2"><a href="service-details.html">Mortgage Loans</a>
-						</li>
-						<li class="mb-2"><a href="service-details.html">Payday Loans</a>
-						</li>
+
+
+                        @endforeach
+                        @endif
+
 					</ul>
 				</div>
 			</div>
 			<div class="col-lg-2 col-md-4 col-6 mb-4">
 				<div class="footer-widget">
-					<h5 class="mb-4 text-primary font-secondary">About</h5>
+					<h5 class="mb-4 text-primary font-secondary">Portfolio Info</h5>
 					<ul class="list-unstyled">
-						<li class="mb-2"><a href="#!">Benefits</a>
+
+
+
+						@php
+                            $item = App\Models\Portfoliocategory::where('status', 1)->orderBy('category_name','ASC')->get();
+                        @endphp
+                         @if ($item->isNotEmpty())
+
+                         @foreach ($item as $item )
+
+						<li class="mb-2"><a href="{{ url('portfolios/categoty/' . $item->id . '/' . $item->category_slug) }}">{{ $item->category_name }}</a>
 						</li>
-						<li class="mb-2"><a href="#!">Careers</a>
-						</li>
-						<li class="mb-2"><a href="#!">Our Story</a>
-						</li>
-						<li class="mb-2"><a href="#!">Team</a>
-						</li>
+
+
+                        @endforeach
+                        @endif
 					</ul>
 				</div>
 			</div>
       <div class="col-lg-2 col-md-4 col-6 mb-4">
 				<div class="footer-widget">
-					<h5 class="mb-4 text-primary font-secondary">Service</h5>
+					<h5 class="mb-4 text-primary font-secondary">Blog Info</h5>
 					<ul class="list-unstyled">
-						<li class="mb-2"><a href="service-details.html">Personal loans</a>
+						@php
+                            $item = App\Models\Blogcatetory::where('status', 1)->orderBy('category_name','ASC')->get();
+                        @endphp
+                         @if ($item->isNotEmpty())
+
+                         @foreach ($item as $item )
+
+						<li class="mb-2"><a href="{{ url('categoty/' . $item->id . '/' . $item->category_slug) }}">{{ $item->category_name }}</a>
 						</li>
-						<li class="mb-2"><a href="service-details.html">Home Equity Loans</a>
-						</li>
-						<li class="mb-2"><a href="service-details.html">Student Loans</a>
-						</li>
-						<li class="mb-2"><a href="service-details.html">Mortgage Loans</a>
-						</li>
-						<li class="mb-2"><a href="service-details.html">Payday Loans</a>
-						</li>
+
+
+                        @endforeach
+                        @endif
 					</ul>
 				</div>
 			</div>
 			<div class="col-lg-2 col-md-4 col-6 mb-4">
 				<div class="footer-widget">
-					<h5 class="mb-4 text-primary font-secondary">Help</h5>
+					<h5 class="mb-4 text-primary font-secondary">Other Info</h5>
 					<ul class="list-unstyled">
-						<li class="mb-2"><a href="contact.html">Contact Us</a>
+
+
+                        @php
+                            $pages = App\Models\Page::where('status', 1)->orderBy('title','ASC')->get();
+                        @endphp
+                    @if ($pages->isNotEmpty())
+
+                       @foreach ($pages as $item )
+
+
+						<li class="mb-2"><a href="{{ url('datails/'.$item->id. '/'.$item->title_slug ) }}">{{ $item->title }}</a>
 						</li>
-						<li class="mb-2"><a href="faq.html">FAQs</a>
-						</li>
+
+                        @endforeach
+                        @endif
 					</ul>
 				</div>
 			</div>
@@ -71,9 +98,9 @@
 			</div>
 			<div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
 				<ul class="list-unstyled list-inline mb-0 text-lg-center">
-					<li class="list-inline-item me-4"><a class="text-black" href="privacy-policy.html">Privacy Policy</a>
+					<li class="list-inline-item me-4"><a class="text-black" href=""></a>
 					</li>
-					<li class="list-inline-item me-4"><a class="text-black" href="terms.html">Terms &amp; Conditions</a>
+					<li class="list-inline-item me-4"><a class="text-black" href=""></a>
 					</li>
 				</ul>
 			</div>

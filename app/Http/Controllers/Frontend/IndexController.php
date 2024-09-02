@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\Blogcatetory;
 use App\Models\Faq;
 use App\Models\Home;
+use App\Models\Page;
 use App\Models\Portfolio;
 use App\Models\Portfoliocategory;
 use App\Models\Service;
@@ -132,4 +133,11 @@ class IndexController extends Controller
 
         return view('frontend.page.faq', compact('faq'));
     } // =======End Method======
+
+    public function Pages($id, $slug){
+
+        $pages = Page::find($id);
+
+        return view('frontend.page.pagedetails', compact('pages'));
+    }
 }

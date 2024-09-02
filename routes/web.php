@@ -155,9 +155,9 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/admin/faq/delete/{id}', 'FaqDelete')->name('faq.delete');
     });
 
-     //=================================Faq Route group ===============
+    //=================================Testimonial Route group ===============
 
-     Route::controller(TestimonialController::class)->group(function () {
+    Route::controller(TestimonialController::class)->group(function () {
         Route::get('/admin/testimonial', 'TestimonialAll')->name('admin.testimonial');
         Route::get('/admin/testimonial/add', 'TestimonialAdd')->name('add.testimonial');
         Route::post('/admin/testimonial/store', 'TestimonialStore')->name('store.testimonial');
@@ -166,6 +166,14 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/admin/testimonial/delete/{id}', 'TestimonialDelete')->name('testimonial.delete');
     });
 
+    //=================================Testimonial Route group ===============
+
+    Route::controller(PageController::class)->group(function () {
+        Route::get('/admin/pages', 'PagesAll')->name('admin.pages');
+        Route::get('/admin/edit/pages/{id}', 'PagesInfoedit')->name('edit.pages');
+        Route::post('/admin/update/pagesinfo', 'PagesUpdateinfo')->name('update.pages');
+        // Route::post('/admin/update/image', 'HomeUpdateimage')->name('update.image');
+    });
 });
 
 // ======================== Manager Dashboard Route ========================
@@ -218,7 +226,7 @@ Route::controller(IndexController::class)->group(function () {
     // =============== Portfolio===============
 
     Route::get('/portfolios', 'Portfolio')->name('home.portfolio');
-    Route::get('/categoty/{id}/{slug}', 'PortfolioCategory')->name('category.portfilio');
+    Route::get('/portfolios/categoty/{id}/{slug}', 'PortfolioCategory')->name('category.portfilio');
     Route::get('/portfolio/details/{id}/{slug}', 'PortfolioDetails')->name('details.portfolio');
 
     // =============== About ===============
@@ -228,7 +236,9 @@ Route::controller(IndexController::class)->group(function () {
 
     Route::get('/faq', 'Faq')->name('home.faq');
 
-   
+    // =============== Faq ===============
+
+    Route::get('/datails/{id}/{slug}', 'Pages')->name('home.pages');
 });
 
 
