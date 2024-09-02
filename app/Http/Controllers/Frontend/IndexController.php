@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Blog;
 use App\Models\Blogcatetory;
+use App\Models\Contact;
 use App\Models\Faq;
 use App\Models\Home;
 use App\Models\Page;
@@ -14,6 +15,7 @@ use App\Models\Portfoliocategory;
 use App\Models\Service;
 use App\Models\Team;
 use App\Models\Testimonial;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,8 +29,9 @@ class IndexController extends Controller
         $service = Service::where('status', 1)->orderBy('title', 'ASC')->get();
         $faq = Faq::where('status', 1)->orderBy('qustion', 'ASC')->limit(6)->get();
         $testimonial = Testimonial::where('status', 1)->latest()->limit(6)->get();
+        $category = Service::latest()->get()->where('status', 1);
 
-        return view('frontend.index', compact('hero', 'abouthome', 'service', 'faq', 'testimonial'));
+        return view('frontend.index', compact('hero', 'abouthome', 'service', 'faq', 'testimonial', 'category'));
     } // =======End Method======
 
 
@@ -139,5 +142,32 @@ class IndexController extends Controller
         $pages = Page::find($id);
 
         return view('frontend.page.pagedetails', compact('pages'));
-    }
+    }// ==========End Method =============
+
+
+    public function Contact(){
+
+        $category = Service::latest()->get()->where('status', 1);
+        return view('frontend.page.contact_us', compact('category'));
+    }// ==========End Method =============
+
+
+    public function ContactSubmit(Request $request){
+
+        Contact::insertGetId([
+            'name' =>  $request->name,
+            'name_slug' => strtolower(str_replace(' ','-',$request->name)),
+            'phone' =>  $request->phone,
+            'email' =>  $request->email,
+            'service_id' =>  $request->service_id,
+
+            'massage' =>  $request->massage,
+            'status' =>  1,
+            'created_at' => Carbon::now(),
+
+        ]);
+
+        return redirect()->route('index');
+
+    }// ==========End Method =============
 }

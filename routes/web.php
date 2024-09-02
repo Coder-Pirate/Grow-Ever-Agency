@@ -236,9 +236,16 @@ Route::controller(IndexController::class)->group(function () {
 
     Route::get('/faq', 'Faq')->name('home.faq');
 
-    // =============== Faq ===============
+    // =============== Footer Menu ===============
 
     Route::get('/datails/{id}/{slug}', 'Pages')->name('home.pages');
+
+    // =============== Footer Menu ===============
+
+
+    Route::get('/contact', 'Contact')->name('home.contact');
+    Route::post('/submit', 'ContactSubmit')->name('submit.contact');
+    // Route::get('/datails/{id}/{slug}', 'Pages')->name('home.pages');
 });
 
 

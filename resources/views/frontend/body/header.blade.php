@@ -24,12 +24,12 @@
                     <li class="nav-item "> <a class="nav-link" href="{{ route('home.faq') }}">Faq</a>
 					</li>
 
-					<li class="nav-item "> <a class="nav-link" href="contact.html">Contact</a>
+					<li class="nav-item "> <a class="nav-link" href="{{ route('home.contact') }}">Contact</a>
 					</li>
-					
+
 				</ul>
 				{{-- <!-- account btn --> <a href="#!" class="btn btn-outline-primary">Log In</a> --}}
-				<!-- account btn --> <a href="#!" class="btn btn-primary ms-2 ms-lg-3">Contact Us</a>
+				<!-- account btn --> <a href="{{ route('home.contact') }}" class="btn btn-primary ms-2 ms-lg-3">Contact Us</a>
 			</div>
 		</div>
 	</nav>
