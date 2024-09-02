@@ -148,7 +148,7 @@
                     <div class="section-title pt-4">
                         <p class="text-primary text-uppercase fw-bold mb-3">Our Services</p>
                         <h1>Our online and offline services</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipreiscing elit. Lacus penatibus tincidunt</p>
+                        <p></p>
                     </div>
                 </div>
                 @if ($service->isNotEmpty())
@@ -193,7 +193,7 @@
                             <p class="lead mb-0 mt-4">
                             <p>{!! $abouthome->short_dec !!}</p>
 
-                            </p> <a class="btn btn-primary mt-4" href="about.html">Know About Us</a>
+                            </p> <a class="btn btn-primary mt-4" href="{{ route('home.about') }}">Know About Us</a>
                         </div>
                     </div>
                     <div class="col-lg-7 text-center text-lg-end">
@@ -298,103 +298,32 @@
                     <div class="section-title text-center">
                         <p class="text-primary text-uppercase fw-bold mb-3">Our Service Holders</p>
                         <h1 class="mb-4">Trusted By 1.2K+ Peoples</h1>
-                        <p class="lead mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing. egestas cursus
-                            pellentesque dignissim
-                            dui, congue. Vel etiam ut</p>
+                        <p class="lead mb-0"></p>
                     </div>
                 </div>
             </div>
             <div class="row position-relative">
+
+                @if ($testimonial->isNotEmpty())
+
+                @foreach ($testimonial as $item)
+
+
                 <div class="col-lg-4 col-md-6 pt-1">
                     <div class="shadow rounded bg-white p-4 mt-4">
                         <div class="d-block d-sm-flex align-items-center mb-3">
-                            <img loading="lazy" decoding="async" src="images/testimonials/01.jpg" alt="Leslie Alexander"
+                            <img loading="lazy" decoding="async" src="{{ asset($item->image) }}" alt="Leslie Alexander"
                                 class="img-fluid" width="65" height="66">
                             <div class="mt-3 mt-sm-0 ms-0 ms-sm-3">
-                                <h4 class="h5 mb-1">Leslie Alexander</h4>
-                                <p class="mb-0">Web Designer</p>
+                                <h4 class="h5 mb-1">{{ $item->title }}</h4>
+                                <p class="mb-0">{{ $item->profession }}</p>
                             </div>
                         </div>
-                        <div class="content">Lorem ipsum dolor <a href="http://google.com">@reamansimond</a> demina
-                            egestas sit purus
-                            felis arcu. Vitae, turpisds tortr etiam faucibus ac suspendisse.</div>
+                        <div class="content">{!!  $item->contant !!}</div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 pt-1">
-                    <div class="shadow rounded bg-white p-4 mt-4">
-                        <div class="d-block d-sm-flex align-items-center mb-3">
-                            <img loading="lazy" decoding="async" src="images/testimonials/02.jpg" alt="Arlene McCoy"
-                                class="img-fluid" width="65" height="66">
-                            <div class="mt-3 mt-sm-0 ms-0 ms-sm-3">
-                                <h4 class="h5 mb-1">Arlene McCoy</h4>
-                                <p class="mb-0">Content Strategist</p>
-                            </div>
-                        </div>
-                        <div class="content">Lorem ipsum dolor <a href="http://google.com">@reamansimond</a> demina
-                            egestas sit purus
-                            felis arcu. Vitae, turpisds tortr etiam faucibus ac suspendisse.</div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 pt-1">
-                    <div class="shadow rounded bg-white p-4 mt-4">
-                        <div class="d-block d-sm-flex align-items-center mb-3">
-                            <img loading="lazy" decoding="async" src="images/testimonials/03.jpg" alt="Marvin McKinney"
-                                class="img-fluid" width="65" height="66">
-                            <div class="mt-3 mt-sm-0 ms-0 ms-sm-3">
-                                <h4 class="h5 mb-1">Marvin McKinney</h4>
-                                <p class="mb-0">Video Game Writer</p>
-                            </div>
-                        </div>
-                        <div class="content">Lorem ipsum dolor <a href="http://google.com">@reamansimond</a> demina
-                            egestas sit purus
-                            felis arcu. Vitae, turpisds tortr etiam faucibus ac suspendisse.</div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 pt-1">
-                    <div class="shadow rounded bg-white p-4 mt-4">
-                        <div class="d-block d-sm-flex align-items-center mb-3">
-                            <img loading="lazy" decoding="async" src="images/testimonials/04.jpg" alt="Devon Lane"
-                                class="img-fluid" width="65" height="66">
-                            <div class="mt-3 mt-sm-0 ms-0 ms-sm-3">
-                                <h4 class="h5 mb-1">Devon Lane</h4>
-                                <p class="mb-0">Nursing Assistant</p>
-                            </div>
-                        </div>
-                        <div class="content">Lorem ipsum dolor <a href="http://google.com">@reamansimond</a> demina
-                            egestas sit purus
-                            felis arcu. Vitae, turpisds tortr etiam faucibus ac suspendisse.</div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 pt-1">
-                    <div class="shadow rounded bg-white p-4 mt-4">
-                        <div class="d-block d-sm-flex align-items-center mb-3">
-                            <img loading="lazy" decoding="async" src="images/testimonials/05.jpg" alt="Bessie Cooper"
-                                class="img-fluid" width="65" height="66">
-                            <div class="mt-3 mt-sm-0 ms-0 ms-sm-3">
-                                <h4 class="h5 mb-1">Bessie Cooper</h4>
-                                <p class="mb-0">Video Game Writer</p>
-                            </div>
-                        </div>
-                        <div class="content">Lorem ipsum dolor <a href="http://google.com">@reamansimond</a> demina
-                            egestas sit purus
-                            felis arcu. Vitae, turpisds tortr etiam faucibus ac suspendisse.</div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 pt-1">
-                    <div class="shadow rounded bg-white p-4 mt-4">
-                        <div class="d-block d-sm-flex align-items-center mb-3">
-                            <img loading="lazy" decoding="async" src="images/testimonials/06.jpg" alt="Kathryn Murphy"
-                                class="img-fluid" width="65" height="66">
-                            <div class="mt-3 mt-sm-0 ms-0 ms-sm-3">
-                                <h4 class="h5 mb-1">Kathryn Murphy</h4>
-                                <p class="mb-0">Film Critic</p>
-                            </div>
-                        </div>
-                        <div class="content">Lorem ipsum dolor <a href="http://google.com">@reamansimond</a> demina
-                            egestas sit purus
-                            felis arcu. Vitae, turpisds tortr etiam faucibus ac suspendisse.</div>
-                    </div>
-                </div>
+                @endforeach
+                @endif
             </div>
         </div>
         <div class="has-shapes">

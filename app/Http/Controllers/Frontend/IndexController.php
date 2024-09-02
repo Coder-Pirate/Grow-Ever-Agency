@@ -12,6 +12,7 @@ use App\Models\Portfolio;
 use App\Models\Portfoliocategory;
 use App\Models\Service;
 use App\Models\Team;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,7 +25,9 @@ class IndexController extends Controller
         $abouthome = Home::find(2);
         $service = Service::where('status', 1)->orderBy('title', 'ASC')->get();
         $faq = Faq::where('status', 1)->orderBy('qustion', 'ASC')->limit(6)->get();
-        return view('frontend.index', compact('hero', 'abouthome', 'service', 'faq'));
+        $testimonial = Testimonial::where('status', 1)->latest()->limit(6)->get();
+
+        return view('frontend.index', compact('hero', 'abouthome', 'service', 'faq', 'testimonial'));
     } // =======End Method======
 
 

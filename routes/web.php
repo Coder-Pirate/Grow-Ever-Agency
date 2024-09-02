@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\IndexController;
 
 use App\Http\Controllers\Backend\PortfolioController;
 use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
@@ -143,7 +144,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     });
 
 
-    //=================================About Route group ===============
+    //=================================Faq Route group ===============
 
     Route::controller(FaqController::class)->group(function () {
         Route::get('/admin/faq', 'FaqAll')->name('admin.faq');
@@ -153,6 +154,18 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('/admin/update/faq', 'FaqUpdateinfo')->name('faq.update');
         Route::get('/admin/faq/delete/{id}', 'FaqDelete')->name('faq.delete');
     });
+
+     //=================================Faq Route group ===============
+
+     Route::controller(TestimonialController::class)->group(function () {
+        Route::get('/admin/testimonial', 'TestimonialAll')->name('admin.testimonial');
+        Route::get('/admin/testimonial/add', 'TestimonialAdd')->name('add.testimonial');
+        Route::post('/admin/testimonial/store', 'TestimonialStore')->name('store.testimonial');
+        Route::get('/admin/testimonial/eiit/{id}', 'TestimonialEdit')->name('admin.testimonial.edit');
+        Route::post('/admin/update/testimonial', 'TestimonialUpdateinfo')->name('update.testimonial');
+        Route::get('/admin/testimonial/delete/{id}', 'TestimonialDelete')->name('testimonial.delete');
+    });
+
 });
 
 // ======================== Manager Dashboard Route ========================
@@ -214,6 +227,8 @@ Route::controller(IndexController::class)->group(function () {
     // =============== Faq ===============
 
     Route::get('/faq', 'Faq')->name('home.faq');
+
+   
 });
 
 
