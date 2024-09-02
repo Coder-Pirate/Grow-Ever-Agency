@@ -21,6 +21,9 @@
                     <li class="nav-item "> <a class="nav-link" href="{{ route('home.blog') }}">Blog</a>
 					</li>
 
+                    <li class="nav-item "> <a class="nav-link" href="{{ route('home.faq') }}">Faq</a>
+					</li>
+
 					<li class="nav-item "> <a class="nav-link" href="contact.html">Contact</a>
 					</li>
 					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>

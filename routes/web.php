@@ -4,7 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CategoryController;
-
+use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\ServiceController;
@@ -118,7 +118,6 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/admin/portfolio/edit/{id}', 'PortfolioEdit')->name('portfolio.edit');
         Route::post('/admin/portfolio/update', 'PortfolioUpdate')->name('portfolio.update');
         Route::get('/admin/portfolio/delete/{id}', 'PortfolioDelete')->name('portfolio.delete');
-
     });
 
 
@@ -131,8 +130,6 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/admin/team/edit/{id}', 'TeamEdit')->name('team.edit');
         Route::post('/admin/team/update', 'TeamUpdate')->name('team.update');
         Route::get('/admin/team/delete/{id}', 'TeamDelete')->name('team.delete');
-
-
     });
 
 
@@ -143,12 +140,19 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/admin/about/eiit/{id}', 'AboutEdit')->name('admin.about.edit');
         Route::post('/admin/update/about', 'AboutUpdateinfo')->name('update.about');
         Route::post('/admin/about/image', 'AboutUpdateimage')->name('about.image');
-
-
-
     });
 
 
+    //=================================About Route group ===============
+
+    Route::controller(FaqController::class)->group(function () {
+        Route::get('/admin/faq', 'FaqAll')->name('admin.faq');
+        Route::get('/admin/faq/add', 'FaqAdd')->name('faq.add');
+        Route::post('/admin/faq/store', 'FaqStore')->name('store.faq');
+        Route::get('/admin/faq/eiit/{id}', 'FaqEdit')->name('admin.faq.edit');
+        Route::post('/admin/update/faq', 'FaqUpdateinfo')->name('faq.update');
+        Route::get('/admin/faq/delete/{id}', 'FaqDelete')->name('faq.delete');
+    });
 });
 
 // ======================== Manager Dashboard Route ========================
@@ -207,7 +211,9 @@ Route::controller(IndexController::class)->group(function () {
     // =============== About ===============
 
     Route::get('/about', 'About')->name('home.about');
+    // =============== Faq ===============
 
+    Route::get('/faq', 'Faq')->name('home.faq');
 });
 
 
