@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 
 class ImageUploadController extends Controller
 {
@@ -12,21 +10,21 @@ class ImageUploadController extends Controller
     {
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $path = $file->store('images', 'public');
-            return response()->json(['link' => asset('storage/' . $path)]);
+            $path = $file->move(public_path('images'), $file->getClientOriginalName());
+            return response()->json(['link' => asset('images/' . $file->getClientOriginalName())]);
         }
         return response()->json(['error' => 'No file uploaded.'], 400);
     } //End Method
 
     public function loadImages()
     {
-        $files = Storage::disk('public')->files('images');
+        $files = File::files(public_path('images'));
         $images = [];
 
         foreach ($files as $file) {
             $images[] = [
-                'url' => asset('storage/' . $file),
-                'thumb' => asset('storage/' . $file),
+                'url' => asset('images/' . $file->getFilename()),
+                'thumb' => asset('images/' . $file->getFilename()),
                 'tag' => 'image'
             ];
         }
@@ -37,16 +35,13 @@ class ImageUploadController extends Controller
     public function delete(Request $request)
     {
         $src = $request->input('src');
-        $path = str_replace(asset('storage'), '', $src);
-        $path = ltrim($path, '/');
+        $path = public_path('images/' . basename($src));
 
-        if (Storage::disk('public')->exists($path)) {
-            Storage::disk('public')->delete($path);
+        if (File::exists($path)) {
+            File::delete($path);
             return response()->json(['message' => 'Image deleted successfully.']);
         }
 
         return response()->json(['error' => 'Image not found.'], 404);
     } //End Method
-
-
 }

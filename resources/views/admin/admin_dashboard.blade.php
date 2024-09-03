@@ -1,5 +1,8 @@
 <!doctype html>
 <html lang="en">
+    @php
+    $siteinfo = App\Models\Siteinfo::find(1);
+@endphp
 
 <head>
     <!-- Required meta tags -->
@@ -8,7 +11,7 @@
     <!--favicon-->
     {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
 
-    <link rel="icon" href="{{ asset('backend/assets/images/favicon-32x32.png') }}" type="image/png" />
+    <link rel="icon" href="{{ asset($siteinfo->fabicon) }}" type="image/png" />
     <!--plugins-->
     <link href="{{ asset('backend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
@@ -32,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 <!-- Flora Editor CSS -->
     {{-- <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' /> --}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.2.6/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
 
     <title>Grow Ever - Digital Agency</title>
 </head>
@@ -140,9 +143,10 @@
 
 
 <!--Floara Editor-->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.2.6/js/froala_editor.pkgd.min.js"></script>
+{{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.2.6/js/froala_editor.pkgd.min.js"></script> --}}
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
 
-  <script>
+<script>
     new FroalaEditor('#editor', {
       imageUploadURL: '{{ route('images.upload') }}',
       imageUploadParams: {
@@ -175,7 +179,6 @@
       }
     });
   </script>
-
 
 
 <!-- Add Sweetalert-->
