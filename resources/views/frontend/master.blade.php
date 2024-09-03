@@ -42,49 +42,7 @@
 @include('frontend.body.header')
 <!-- /navigation -->
 
-<div class="modal applyLoanModal fade" id="applyLoan" tabindex="-1" aria-labelledby="applyLoanLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header border-bottom-0">
-        <h4 class="modal-title" id="exampleModalLabel">How much do you need?</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="myForm" action="{{ route('submit.contact') }}" method="post"  enctype="multipart/form-data">
-            @csrf
-        <div class="form-group mb-4 pb-2">
-            <label for="exampleFormControlInput1" class="form-label">Full Name</label>
-            <input type="text" name="name" class="form-control shadow-none" id="name"  required >
-        </div>
-        <div class="form-group mb-4 pb-2">
-            <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
-            <input type="number" name="phone" class="form-control shadow-none" id="phone" required>
-        </div>
-        <div class="form-group mb-4 pb-2">
-            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-            <input type="email" name="email" class="form-control shadow-none" id="email" required >
-        </div>
-        <div class="form-group mb-4 pb-2">
-            <label for="exampleFormControlInput1" class="form-label">Select A Service</label>
 
-            <select name="service_id" class="form-select mb-3" id="service_id" style="color: #040404" required>
-                <option value="">Open this select menu</option>
-                @foreach ($category as $cat )
-                <option value="{{ $cat->id }}">{{ $cat->title }}</option>
-                @endforeach
-              </select>
-        </div>
-        <div class="form-group mb-4 pb-2">
-            <label for="exampleFormControlTextarea1" class="form-label">Write Message</label>
-            <textarea class="form-control shadow-none" name="massage" id="massage" rows="3"></textarea>
-        </div>
-        <button class="btn btn-primary w-100" type="submit">Send Message</button>
-
-    </form>
-      </div>
-    </div>
-  </div>
-</div>
 @yield('master')
 
 @include('frontend.body.footer')

@@ -159,6 +159,20 @@
             </ul>
         </li>
 
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Contact</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.contact') }}"><i class='bx bx-radio-circle'></i>Contact All</a>
+                </li>
+
+
+            </ul>
+        </li>
+
 
 
     </ul>

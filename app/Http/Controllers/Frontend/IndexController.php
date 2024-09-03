@@ -162,7 +162,7 @@ class IndexController extends Controller
             'service_id' =>  $request->service_id,
 
             'massage' =>  $request->massage,
-            'status' =>  1,
+            'status' =>  0,
             'created_at' => Carbon::now(),
 
         ]);

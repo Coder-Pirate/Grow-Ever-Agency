@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\PageController;
@@ -172,7 +173,21 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/admin/pages', 'PagesAll')->name('admin.pages');
         Route::get('/admin/edit/pages/{id}', 'PagesInfoedit')->name('edit.pages');
         Route::post('/admin/update/pagesinfo', 'PagesUpdateinfo')->name('update.pages');
+
+
         // Route::post('/admin/update/image', 'HomeUpdateimage')->name('update.image');
+    });
+
+
+     //=================================Testimonial Route group ===============
+
+     Route::controller(ContactController::class)->group(function () {
+        Route::get('/admin/contact', 'ContactAll')->name('admin.contact');
+        Route::get('/admin/contact/info/{id}', 'ContactInfo')->name('contact.info');
+        Route::get('/admin/contact/edit/{id}', 'ContactEdit')->name('contact.edit');
+        Route::post('/admin/contact/update', 'ContactUpdate')->name('contact.update');
+        Route::get('/admin/contact/delete/{id}', 'ContactlDelete')->name('contact.delete');
+       
     });
 });
 
