@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Frontend\IndexController;
 
 use App\Http\Controllers\Backend\PortfolioController;
+use App\Http\Controllers\Backend\SiteinfoController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\ImageUploadController;
@@ -179,7 +180,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     });
 
 
-     //=================================Testimonial Route group ===============
+     //=================================Contact Route group ===============
 
      Route::controller(ContactController::class)->group(function () {
         Route::get('/admin/contact', 'ContactAll')->name('admin.contact');
@@ -187,7 +188,23 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/admin/contact/edit/{id}', 'ContactEdit')->name('contact.edit');
         Route::post('/admin/contact/update', 'ContactUpdate')->name('contact.update');
         Route::get('/admin/contact/delete/{id}', 'ContactlDelete')->name('contact.delete');
-       
+
+    });
+
+
+     //=================================Siteinfo Route group ===============
+
+
+    Route::controller(SiteinfoController::class)->group(function () {
+        Route::get('/admin/siteinfo', 'SiteInfo')->name('admin.siteinfo');
+        Route::post('/admin/sitefabicon/update', 'SiteInfoIconUpdate')->name('admin.siteicon.update');
+        Route::post('/admin/sitelogo/update', 'SiteInfoLogoUpdate')->name('admin.sitelogo.update');
+        Route::post('/admin/siteothesinfo/update', 'SiteInfoOthersUpdate')->name('admin.siteothersinfo.update');
+        // Route::get('/admin/edit/pages/{id}', 'PagesInfoedit')->name('edit.pages');
+        // Route::post('/admin/update/pagesinfo', 'PagesUpdateinfo')->name('update.pages');
+
+
+        // Route::post('/admin/update/image', 'HomeUpdateimage')->name('update.image');
     });
 });
 
@@ -214,6 +231,7 @@ Route::middleware(['auth', 'roles:manager'])->group(function () {
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/manager/login', [ManagerController::class, 'ManagerLogin'])->name('manager.login')->middleware(RedirectIfAuthenticated::class);
+// Route::get('/login', [UserController::class, 'UserLogin'])->name('user.login')->middleware(RedirectIfAuthenticated::class);
 
 
 
@@ -255,12 +273,14 @@ Route::controller(IndexController::class)->group(function () {
 
     Route::get('/datails/{id}/{slug}', 'Pages')->name('home.pages');
 
-    // =============== Footer Menu ===============
+    // =============== Contact Submit Menu ===============
 
 
     Route::get('/contact', 'Contact')->name('home.contact');
     Route::post('/submit', 'ContactSubmit')->name('submit.contact');
     // Route::get('/datails/{id}/{slug}', 'Pages')->name('home.pages');
+
+
 });
 
 

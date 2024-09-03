@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
 
+@php
+                    $siteinfo = App\Models\Siteinfo::find(1);
+                @endphp
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -38,12 +41,12 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <div class="p-4">
-                                    {{-- <div class="mb-3 text-center">
-										<img src="assets/images/logo-icon.png" width="60" alt="" />
-									</div> --}}
+                                    <div class="mb-3 text-center">
+										<img src="{{ asset($siteinfo->logo) }}" width="100" alt="" />
+									</div>
                                     <div class="text-center mb-4">
-                                        <h5 class="">Grow Ever</h5>
-                                        <p class="mb-0">Digital Agency</p>
+                                        <h5 class="">{{ $siteinfo->site_name }}</h5>
+                                        <p class="mb-0">Admin Login</p>
                                     </div>
                                     <div class="form-body">
 

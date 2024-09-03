@@ -5,49 +5,51 @@
 
 
 
-<div class="modal applyLoanModal fade" id="applyLoan" tabindex="-1" aria-labelledby="applyLoanLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header border-bottom-0">
-          <h4 class="modal-title" id="exampleModalLabel">How much do you need?</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="myForm" action="{{ route('submit.contact') }}" method="post"  enctype="multipart/form-data">
-              @csrf
-          <div class="form-group mb-4 pb-2">
-              <label for="exampleFormControlInput1" class="form-label">Full Name</label>
-              <input type="text" name="name" class="form-control shadow-none" id="name"  required >
-          </div>
-          <div class="form-group mb-4 pb-2">
-              <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
-              <input type="number" name="phone" class="form-control shadow-none" id="phone" required>
-          </div>
-          <div class="form-group mb-4 pb-2">
-              <label for="exampleFormControlInput1" class="form-label">Email address</label>
-              <input type="email" name="email" class="form-control shadow-none" id="email" required >
-          </div>
-          <div class="form-group mb-4 pb-2">
-              <label for="exampleFormControlInput1" class="form-label">Select A Service</label>
+    <div class="modal applyLoanModal fade" id="applyLoan" tabindex="-1" aria-labelledby="applyLoanLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <h4 class="modal-title" id="exampleModalLabel">How much do you need?</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="myForm" action="{{ route('submit.contact') }}" method="post"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group mb-4 pb-2">
+                            <label for="exampleFormControlInput1" class="form-label">Full Name</label>
+                            <input type="text" name="name" class="form-control shadow-none" id="name" required>
+                        </div>
+                        <div class="form-group mb-4 pb-2">
+                            <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
+                            <input type="number" name="phone" class="form-control shadow-none" id="phone" required>
+                        </div>
+                        <div class="form-group mb-4 pb-2">
+                            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                            <input type="email" name="email" class="form-control shadow-none" id="email" required>
+                        </div>
+                        <div class="form-group mb-4 pb-2">
+                            <label for="exampleFormControlInput1" class="form-label">Select A Service</label>
 
-              <select name="service_id" class="form-select mb-3" id="service_id" style="color: #040404" required>
-                  <option value="">Open this select menu</option>
-                  @foreach ($category as $cat )
-                  <option value="{{ $cat->id }}">{{ $cat->title }}</option>
-                  @endforeach
-                </select>
-          </div>
-          <div class="form-group mb-4 pb-2">
-              <label for="exampleFormControlTextarea1" class="form-label">Write Message</label>
-              <textarea class="form-control shadow-none" name="massage" id="massage" rows="3"></textarea>
-          </div>
-          <button class="btn btn-primary w-100" type="submit">Send Message</button>
+                            <select name="service_id" class="form-select mb-3" id="service_id" style="color: #040404"
+                                required>
+                                <option value="">Open this select menu</option>
+                                @foreach ($category as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group mb-4 pb-2">
+                            <label for="exampleFormControlTextarea1" class="form-label">Write Message</label>
+                            <textarea class="form-control shadow-none" name="massage" id="massage" rows="3"></textarea>
+                        </div>
+                        <button class="btn btn-primary w-100" type="submit">Send Message</button>
 
-      </form>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
     @if ($hero->image != '')
         <section class="banner bg-tertiary position-relative overflow-hidden">
@@ -57,7 +59,8 @@
                         <div class="block text-center text-lg-start pe-0 pe-xl-5">
                             <h1 class="text-capitalize mb-4">{{ $hero->title }}</h1>
                             <p class="mb-4">{!! $hero->short_dec !!}</p> <a type="button" class="btn btn-primary"
-                                href="#" data-bs-toggle="modal" data-bs-target="#applyLoan">Get Free Consultant <span style="font-size: 14px;" class="ms-2 fas fa-arrow-right"></span></a>
+                                href="#" data-bs-toggle="modal" data-bs-target="#applyLoan">Get Free Consultant <span
+                                    style="font-size: 14px;" class="ms-2 fas fa-arrow-right"></span></a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -350,24 +353,21 @@
             <div class="row position-relative">
 
                 @if ($testimonial->isNotEmpty())
-
-                @foreach ($testimonial as $item)
-
-
-                <div class="col-lg-4 col-md-6 pt-1">
-                    <div class="shadow rounded bg-white p-4 mt-4">
-                        <div class="d-block d-sm-flex align-items-center mb-3">
-                            <img loading="lazy" decoding="async" src="{{ asset($item->image) }}" alt="Leslie Alexander"
-                                class="img-fluid" width="65" height="66">
-                            <div class="mt-3 mt-sm-0 ms-0 ms-sm-3">
-                                <h4 class="h5 mb-1">{{ $item->title }}</h4>
-                                <p class="mb-0">{{ $item->profession }}</p>
+                    @foreach ($testimonial as $item)
+                        <div class="col-lg-4 col-md-6 pt-1">
+                            <div class="shadow rounded bg-white p-4 mt-4">
+                                <div class="d-block d-sm-flex align-items-center mb-3">
+                                    <img loading="lazy" decoding="async" src="{{ asset($item->image) }}"
+                                        alt="Leslie Alexander" class="img-fluid" width="65" height="66">
+                                    <div class="mt-3 mt-sm-0 ms-0 ms-sm-3">
+                                        <h4 class="h5 mb-1">{{ $item->title }}</h4>
+                                        <p class="mb-0">{{ $item->profession }}</p>
+                                    </div>
+                                </div>
+                                <div class="content">{!! $item->contant !!}</div>
                             </div>
                         </div>
-                        <div class="content">{!!  $item->contant !!}</div>
-                    </div>
-                </div>
-                @endforeach
+                    @endforeach
                 @endif
             </div>
         </div>
@@ -422,50 +422,46 @@
 
 
                         @if ($faq->isNotEmpty())
-                        @php
-                            $x=1;
-                        @endphp
-                        @foreach ($faq as $faq)
-
-
-                            <div class="accordion-item p-1 mb-2">
-                                <h2 class="accordion-header accordion-button h5 border-0 "
-                                    id="heading-{{ $x }}" type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#collapse-{{ $x }}"
-                                    aria-expanded="true"
-                                    aria-controls="collapse-{{ $x }}"> {{ $faq->qustion }}
-                                </h2>
-                                <div id="collapse-{{ $x }}"
-                                    class="accordion-collapse collapse border-0 "
-                                    aria-labelledby="heading-{{ $x }}"
-                                    data-bs-parent="#accordionFAQ">
-                                    <div class="accordion-body py-0 content">{!! $faq->answer !!}</div>
-                                </div>
-                            </div>
                             @php
-                                $x++;
+                                $x = 1;
                             @endphp
+                            @foreach ($faq as $faq)
+                                <div class="accordion-item p-1 mb-2">
+                                    <h2 class="accordion-header accordion-button h5 border-0 "
+                                        id="heading-{{ $x }}" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse-{{ $x }}" aria-expanded="true"
+                                        aria-controls="collapse-{{ $x }}"> {{ $faq->qustion }}
+                                    </h2>
+                                    <div id="collapse-{{ $x }}" class="accordion-collapse collapse border-0 "
+                                        aria-labelledby="heading-{{ $x }}" data-bs-parent="#accordionFAQ">
+                                        <div class="accordion-body py-0 content">{!! $faq->answer !!}</div>
+                                    </div>
+                                </div>
+                                @php
+                                    $x++;
+                                @endphp
                             @endforeach
                         @endif
 
                     </div>
                 </div>
+
+                @php
+                    $siteinfo = App\Models\Siteinfo::find(1);
+                @endphp
                 <div class="col-lg-4 mt-4 mt-lg-0">
                     <div class="shadow rounded py-5 px-4 ms-0 ms-lg-4 bg-white position-relative">
                         <div class="block mx-0 mx-lg-3 mt-0">
                             <h4 class="h5">Still Have Questions?</h4>
                             <div class="content">Call Us We Will Be Happy To Help
-                                <br> <a href="tel:+3301563965">+3301563965</a>
-                                <br>Monday - Friday
-                                <br>9AM TO 8PM Eastern Time
+                                <br> <a href="tel:{{ $siteinfo->contact_number }}">{{ $siteinfo->contact_number }}</a>
+                                <br>{{ $siteinfo->working_days }}
+                                <br>{{ $siteinfo->working_hours }}
                             </div>
                         </div>
                         <div class="block mx-0 mx-lg-3 mt-4">
-                            <h4 class="h5">Canada Office</h4>
-                            <div class="content">231 Ross Street.
-                                <br>K7A 1C2.
-                                <br>Smiths Falls
+                            <h4 class="h5">{{ $siteinfo->branch_name }}</h4>
+                            <div class="content">{{ $siteinfo->branch_address }}
                             </div>
                         </div>
 

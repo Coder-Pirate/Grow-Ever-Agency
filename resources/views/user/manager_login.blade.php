@@ -44,7 +44,7 @@
 									</div>
                                     <div class="text-center mb-4">
                                         <h5 class="">{{ $siteinfo->site_name }}</h5>
-                                        <p class="mb-0">Managet Login</p>
+                                        <p class="mb-0">User Login</p>
                                     </div>
                                     <div class="form-body">
 

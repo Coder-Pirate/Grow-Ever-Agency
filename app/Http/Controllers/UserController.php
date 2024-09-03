@@ -14,4 +14,11 @@ class UserController extends Controller
 
 
     }// =======End Method======
+
+    // public function UserLogin()
+    // {
+
+
+    //     return view('user.manager_login');
+    // } // =====End Method=======
 }
