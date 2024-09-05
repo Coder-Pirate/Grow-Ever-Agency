@@ -25,6 +25,12 @@
 
     <div class="card">
         <div class="card-body">
+            <div class="ms-auto">
+                <div class="btn-group">
+               <a href="{{ route('admin.portfolio.add') }}" class="btn btn-primary px-5">Add Portfolio </a>
+                </div>
+            </div>
+            <hr>
             <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>

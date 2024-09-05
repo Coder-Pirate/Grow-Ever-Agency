@@ -15,16 +15,18 @@
                 </ol>
             </nav>
         </div>
-        <div class="ms-auto">
-            <div class="btn-group">
-           <a href="{{  route('add.testimonial') }}" class="btn btn-primary px-5">Add Testimonial </a>
-            </div>
-        </div>
+        
     </div>
     <!--end breadcrumb-->
 
     <div class="card">
         <div class="card-body">
+            <div class="ms-auto">
+                <div class="btn-group">
+               <a href="{{  route('add.testimonial') }}" class="btn btn-primary px-5">Add Testimonial </a>
+                </div>
+            </div>
+            <hr>
             <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
