@@ -59,11 +59,14 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-md-12">
+                   
                         <label for="input1" class="form-label"> Contant </label>
-                        <textarea name="contant" class="form-control" id="editor" placeholder="" rows="3">{{ $portfolioData->contant }}</textarea>
-                    </div>
+                        <div id="editor-container">{!! $portfolioData->contant !!}</div>
+                        <textarea name="contant" class="form-control" id="content" style="display:none;"></textarea>
+                   
 
+                
+                    
                     <div class="form-group col-md-6">
                 <label for="input1" class="form-label" >Status </label>
                 <select name="status" class="form-select mb-3" aria-label="Default select example" required="">
@@ -76,7 +79,7 @@
 
                     <div class="col-md-12">
                         <div class="d-md-flex d-grid align-items-center gap-3">
-                            <button type="submit" class="btn btn-primary px-4">Save Changes</button>
+                            <button type="submit" id="submit-button" class="btn btn-primary px-4">Save Changes</button>
 
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-    @php
+@php
     $siteinfo = App\Models\Siteinfo::find(1);
 @endphp
 
@@ -31,11 +31,14 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/header-colors.css') }}" />
-<!-- Toster CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-<!-- Flora Editor CSS -->
+    <!-- Toster CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <!-- Flora Editor CSS -->
     {{-- <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' /> --}}
-    <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
+    {{-- <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet'
+        type='text/css' /> --}}
+
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <title>Grow Ever - Digital Agency</title>
 </head>
@@ -112,7 +115,7 @@
     </script>
     <!--Tostet JS-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<!--Validition JS-->
+    <!--Validition JS-->
     <script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
 
     <script>
@@ -142,76 +145,175 @@
 
 
 
-<!--Floara Editor-->
-{{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.2.6/js/froala_editor.pkgd.min.js"></script> --}}
-<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
+    <!--Floara Editor-->
+    {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.2.6/js/froala_editor.pkgd.min.js"></script> --}}
+    {{-- <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'>
+    </script> --}}
 
-<script>
-    new FroalaEditor('#editor', {
-      imageUploadURL: '{{ route('images.upload') }}',
-      imageUploadParams: {
-        _token: '{{ csrf_token() }}'
-      },
-      imageManagerLoadURL: '{{ route('images.load') }}',
-      imageManagerDeleteURL: '{{ route('images.delete') }}',
-      imageManagerDeleteMethod: 'POST',
-      imageManagerDeleteParams: {
-        _token: '{{ csrf_token() }}'
-      },
-      events: {
-        'image.removed': function ($img) {
-          var src = $img.attr('src');
-          $.ajax({
-            method: 'POST',
-            url: '{{ route('images.delete') }}',
-            data: {
-              src: src,
-              _token: '{{ csrf_token() }}'
+    {{-- <script>
+        new FroalaEditor('#editor', {
+            imageUploadURL: '{{ route('images.upload') }}',
+            imageUploadParams: {
+                _token: '{{ csrf_token() }}'
             },
-            success: function (response) {
-              console.log('Image deleted');
+            imageManagerLoadURL: '{{ route('images.load') }}',
+            imageManagerDeleteURL: '{{ route('images.delete') }}',
+            imageManagerDeleteMethod: 'POST',
+            imageManagerDeleteParams: {
+                _token: '{{ csrf_token() }}'
             },
-            error: function (xhr, status, error) {
-              console.error('Error deleting image:', error);
+            events: {
+                'image.removed': function($img) {
+                    var src = $img.attr('src');
+                    $.ajax({
+                        method: 'POST',
+                        url: '{{ route('images.delete') }}',
+                        data: {
+                            src: src,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            console.log('Image deleted');
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error deleting image:', error);
+                        }
+                    });
+                }
             }
-          });
-        }
-      }
+        });
+    </script> --}}
+
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        var quill = new Quill('#editor-container', {
+            modules: {
+    toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+    ['blockquote', 'code-block'],
+
+    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+    [{ 'direction': 'rtl' }],                         // text direction
+
+    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+    [{ 'font': [] }],
+    [{ 'align': [] }],
+
+    ['clean'],                                         // remove formatting button
+
+    ['link', 'image', 'video']   
+
+    ],
+  },
+  placeholder: 'Compose an epic...',
+  theme: 'snow', // or 'bubble'
+            
+            
+        });
+
+        document.getElementById('submit-button').addEventListener('click', function() {
+            document.getElementById('content').value = quill.root.innerHTML;
+        });
+
+        // Image upload handler
+    quill.getModule('toolbar').addHandler('image', function() {
+        var input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+        input.click();
+
+        input.onchange = function() {
+            var file = input.files[0];
+            if (file) {
+                var formData = new FormData();
+                formData.append('image', file);
+
+                fetch('{{ route('upload.image') }}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.url) {
+                        var range = quill.getSelection();
+                        quill.insertEmbed(range.index, 'image', result.url);
+                    }
+                });
+            }
+        };
     });
-  </script>
+
+    // Image delete handler
+    quill.root.addEventListener('click', function(event) {
+        if (event.target.tagName === 'IMG') {
+            var imageUrl = event.target.src;
+            if (confirm('Are you sure you want to delete this image?')) {
+                fetch('{{ route('delete.image') }}', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ path: imageUrl })
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        event.target.remove();
+                        console.log('Image deleted successfully');
+                    } else {
+                        console.error('Error deleting image:', result.error);
+                    }
+                });
+            }
+        }
+    });
+    </script>
 
 
-<!-- Add Sweetalert-->
+
+
+    <!-- Add Sweetalert-->
 
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="{{ asset('backend/assets/js/code.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('backend/assets/js/code.js') }}"></script>
 
 
 
 
 
 
-<script src="{{ asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-	<script src="{{ asset('backend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
-	<script>
-		$(document).ready(function() {
-			$('#example').DataTable();
-		  } );
-	</script>
-	<script>
-		$(document).ready(function() {
-			var table = $('#example2').DataTable( {
-				lengthChange: false,
-				buttons: [ 'copy', 'excel', 'pdf', 'print']
-			} );
+    <script src="{{ asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#example2').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf', 'print']
+            });
 
-			table.buttons().container()
-				.appendTo( '#example2_wrapper .col-md-6:eq(0)' );
-		} );
-	</script>
+            table.buttons().container()
+                .appendTo('#example2_wrapper .col-md-6:eq(0)');
+        });
+    </script>
 
 
 </body>

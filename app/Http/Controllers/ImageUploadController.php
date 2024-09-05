@@ -6,42 +6,32 @@ use Illuminate\Support\Facades\File;
 
 class ImageUploadController extends Controller
 {
-    public function upload(Request $request)
+    public function uploadImage(Request $request)
     {
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $path = $file->move(public_path('images'), $file->getClientOriginalName());
-            return response()->json(['link' => asset('images/' . $file->getClientOriginalName())]);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            return response()->json(['url' => asset('images/' . $imageName)]);
         }
-        return response()->json(['error' => 'No file uploaded.'], 400);
+        return response()->json(['error' => 'No image uploaded'], 400);
     } //End Method
 
-    public function loadImages()
+    
+    public function deleteImage(Request $request)
     {
-        $files = File::files(public_path('images'));
-        $images = [];
+        $path = public_path('images/' . basename($request->input('path')));
+        if (file_exists($path)) {
+            unlink($path);
 
-        foreach ($files as $file) {
-            $images[] = [
-                'url' => asset('images/' . $file->getFilename()),
-                'thumb' => asset('images/' . $file->getFilename()),
-                'tag' => 'image'
-            ];
+            // Check if the folder is empty and delete it
+            $folderPath = dirname($path);
+            if (count(glob("$folderPath/*")) === 0) {
+                rmdir($folderPath);
+            }
+
+            return response()->json(['success' => 'Image and folder deleted']);
         }
-
-        return response()->json($images);
-    } //End Method
-
-    public function delete(Request $request)
-    {
-        $src = $request->input('src');
-        $path = public_path('images/' . basename($src));
-
-        if (File::exists($path)) {
-            File::delete($path);
-            return response()->json(['message' => 'Image deleted successfully.']);
-        }
-
-        return response()->json(['error' => 'Image not found.'], 404);
+        return response()->json(['error' => 'Image not found'], 404);
     } //End Method
 }

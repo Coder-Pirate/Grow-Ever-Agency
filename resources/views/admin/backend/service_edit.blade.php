@@ -42,10 +42,12 @@
                         <textarea name="short_desc" class="form-control" id="short_desc" placeholder="{{ $id->short_desc }}" rows="3">{{ $id->short_desc }}</textarea>
                     </div>
 
-                    <div class="form-group col-md-12">
-                        <label for="input1" class="form-label"> Description </label>
-                        <textarea name="description" class="form-control" id="editor" placeholder="" rows="3">{{ $id->description }}</textarea>
-                    </div>
+                    
+
+                    <label for="input1" class="form-label"> Description </label>
+                    <div id="editor-container">{!! $id->description !!} </div>
+                    <textarea name="description" class="form-control" id="content" style="display:none;"></textarea>
+
 
                     <div class="form-group col-md-6">
                 <label for="input1" class="form-label" >Status </label>
@@ -59,7 +61,7 @@
 
                     <div class="col-md-12">
                         <div class="d-md-flex d-grid align-items-center gap-3">
-                            <button type="submit" class="btn btn-primary px-4">Save Changes</button>
+                            <button type="submit" id="submit-button" class="btn btn-primary px-4">Save Changes</button>
 
                         </div>
                     </div>

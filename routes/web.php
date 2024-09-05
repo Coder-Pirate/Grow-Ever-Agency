@@ -288,6 +288,5 @@ Route::controller(IndexController::class)->group(function () {
 
 
 //======================== Editor Image  All Frontend ========================
-Route::post('/upload_image', [ImageUploadController::class, 'upload'])->name('images.upload');
-Route::get('/images', [ImageUploadController::class, 'loadImages'])->name('images.load');
-Route::post('/delete_image', [ImageUploadController::class, 'delete'])->name('images.delete');
+Route::post('/upload_image', [ImageUploadController::class, 'uploadImage'])->name('upload.image');
+Route::delete('delete-image', [ImageUploadController::class, 'deleteImage'])->name('delete.image');

@@ -1,5 +1,8 @@
 @extends('frontend.master')
 @section('master')
+@php
+$siteinfo = App\Models\Siteinfo::find(1);
+@endphp
 
     <section class="page-header bg-tertiary">
         <div class="container">
@@ -151,14 +154,13 @@
                     <div class="widget">
                         <h4 class="widget-title"><span>Social Links</span></h4>
                         <ul class="list-unstyled list-inline mb-0 social-icons">
-                            <li class="list-inline-item me-3"><a title="Explorer Facebook Profile" class="text-black"
-                                    href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                            <li class="list-inline-item me-3"><a title="Explorer Facebook Profile" class="text-black" href="{{ $siteinfo->fb_url }}"><i class="fab fa-facebook-f"></i></a>
                             </li>
-                            <li class="list-inline-item me-3"><a title="Explorer Twitter Profile" class="text-black"
-                                    href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                            <li class="list-inline-item me-3"><a title="Explorer Twitter Profile" class="text-black" href="{{ $siteinfo->tw_url }}"><i class="fab fa-twitter"></i></a>
                             </li>
-                            <li class="list-inline-item me-3"><a title="Explorer Instagram Profile" class="text-black"
-                                    href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                            <li class="list-inline-item me-3"><a title="Explorer What's App Profile" class="text-black" href="{{ $siteinfo->wh_url }}"><i class="fab fa-whatsapp"></i></a>
+                            </li>
+                            <li class="list-inline-item me-3"><a title="Explorer Instagram Profile" class="text-black" href="{{ $siteinfo->in_url }}"><i class="fab fa-instagram"></i></a>
                             </li>
                         </ul>
                     </div>

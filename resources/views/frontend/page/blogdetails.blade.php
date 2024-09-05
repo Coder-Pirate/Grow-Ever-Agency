@@ -1,5 +1,11 @@
 @extends('frontend.master')
 @section('master')
+
+@php
+$siteinfo = App\Models\Siteinfo::find(1);
+@endphp
+
+
     <div class="section">
         <div class="container">
             <div class="row justify-content-center">
